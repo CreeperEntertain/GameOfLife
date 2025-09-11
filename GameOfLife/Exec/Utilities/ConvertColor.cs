@@ -1,5 +1,4 @@
-﻿using GameOfLife.Exec.Enums;
-using GameOfLife.Exec.Structs;
+﻿using GameOfLife.Exec.Structs;
 
 namespace GameOfLife.Exec.Utilities
 {
