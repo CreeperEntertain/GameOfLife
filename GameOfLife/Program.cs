@@ -1,8 +1,7 @@
 ﻿using GameOfLife.Exec;
 
-float c = 0f;
-float m = 0.5f;
-float y = 1f;
-float k = 0f;
-Color color = new Color(c, m, y, k);
-Console.WriteLine(color.RGB.Hex());
+int h = 0;
+float s = 1f;
+float v = 1f;
+Color color = new Color(h, s, v);
+Console.WriteLine(color.CMYK);

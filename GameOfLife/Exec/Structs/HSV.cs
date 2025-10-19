@@ -14,6 +14,8 @@
         }
 
         public override string ToString()
-        => $"";
+        =>  $"H: {H}, " +
+            $"S: {Math.Round(S, 2) * 100}%, " +
+            $"V: {Math.Round(V, 2) * 100}%";
     }
 }

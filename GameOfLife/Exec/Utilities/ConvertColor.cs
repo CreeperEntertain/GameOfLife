@@ -4,30 +4,94 @@ namespace GameOfLife.Exec.Utilities
 {
     internal static class ConvertColor
     {
+        public static float epsilon = 1e-6f;
+
         public static RGB HSVToRGB(HSV receivedColor)
-            => new RGB();
+        {
+            RGB rgbOut = new RGB();
+
+            float H = receivedColor.H;
+            float S = receivedColor.S;
+            float V = receivedColor.V;
+
+            if (S < epsilon)
+            {
+                byte val = (byte)Math.Round(V * 255f);
+                return new RGB(val, val, val);
+            }
+
+            float C = V * S;
+            float HPrime = H / 60f;
+            float X = C * (1 - Math.Abs(HPrime % 2 - 1));
+            float m = V - C;
+
+            float r1 = 0, g1 = 0, b1 = 0;
+
+            int sector = (int)Math.Floor(HPrime);
+            switch (sector)
+            {
+                case 0: r1 = C; g1 = X; b1 = 0; break;
+                case 1: r1 = X; g1 = C; b1 = 0; break;
+                case 2: r1 = 0; g1 = C; b1 = X; break;
+                case 3: r1 = 0; g1 = X; b1 = C; break;
+                case 4: r1 = X; g1 = 0; b1 = C; break;
+                case 5: r1 = C; g1 = 0; b1 = X; break;
+                default: r1 = 0; g1 = 0; b1 = 0; break;
+            }
+
+            rgbOut.R = (byte)Math.Round((r1 + m) * 255f);
+            rgbOut.G = (byte)Math.Round((g1 + m) * 255f);
+            rgbOut.B = (byte)Math.Round((b1 + m) * 255f);
+
+            return rgbOut;
+        }
         public static RGB CMYKToRGB(CMYK receivedColor)
         {
-            RGB rgbOut;
+            RGB rgbOut = new RGB();
 
             float normCyan = receivedColor.C;
             float normMagenta = receivedColor.M;
             float normYellow = receivedColor.Y;
             float normKey = receivedColor.K;
 
-            byte R = (byte)Math.Clamp(Math.Round(255 * ((1 - normCyan) * (1 - normKey))), 0, 255);
-            byte G = (byte)Math.Clamp(Math.Round(255 * ((1 - normMagenta) * (1 - normKey))), 0, 255);
-            byte B = (byte)Math.Clamp(Math.Round(255 * ((1 - normYellow) * (1 - normKey))), 0, 255);
-
-            rgbOut = new RGB(R, G, B);
+            rgbOut.R = (byte)Math.Clamp(Math.Round(255 * ((1 - normCyan) * (1 - normKey))), 0, 255);
+            rgbOut.G = (byte)Math.Clamp(Math.Round(255 * ((1 - normMagenta) * (1 - normKey))), 0, 255);
+            rgbOut.B = (byte)Math.Clamp(Math.Round(255 * ((1 - normYellow) * (1 - normKey))), 0, 255);
 
             return rgbOut;
         }
 
         public static HSV RGBToHSV(RGB receivedColor)
-            => new HSV();
+        {
+            HSV hsvOut = new HSV();
+
+            float normRed = receivedColor.R / 255f;
+            float normGreen = receivedColor.G / 255f;
+            float normBlue = receivedColor.B / 255f;
+
+            float max = Math.Max(normRed, Math.Max(normGreen, normBlue));
+            float min = Math.Min(normRed, Math.Min(normGreen, normBlue));
+            float delta = max - min;
+
+            hsvOut.V = max;
+            hsvOut.S = (max < epsilon) ? 0f : delta / max;
+
+            if (delta < epsilon)
+                hsvOut.H = 0;
+            else if (max == normRed)
+                hsvOut.H = (int)Math.Round(60f * ((normGreen - normBlue) / delta % 6f));
+            else if (max == normGreen)
+                hsvOut.H = (int)Math.Round(60f * ((normBlue - normRed) / delta + 2f));
+            else
+                hsvOut.H = (int)Math.Round(60f * ((normRed - normGreen) / delta + 4f));
+
+            if (hsvOut.H < 0)
+                hsvOut.H += 360;
+
+            return hsvOut;
+        }
         public static HSV CMYKToHSV(CMYK receivedColor)
-            => new HSV();
+        =>  RGBToHSV(CMYKToRGB(receivedColor));
 
         public static CMYK RGBToCMYK(RGB receivedColor)
         {
@@ -41,7 +105,7 @@ namespace GameOfLife.Exec.Utilities
             float normCyan;
             float normMagenta;
             float normYellow;
-            if (Math.Abs(normKey - 1f) < 1e-6f)
+            if (Math.Abs(normKey - 1f) < epsilon)
             {
                 normCyan = 0;
                 normMagenta = 0;
@@ -61,6 +125,6 @@ namespace GameOfLife.Exec.Utilities
             return cmykOut;
         }
         public static CMYK HSVtoCMYK(HSV receivedColor)
-            => new CMYK();
+        =>  RGBToCMYK(HSVToRGB(receivedColor));
     }
 }

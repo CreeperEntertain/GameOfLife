@@ -1,5 +1,4 @@
-﻿using GameOfLife.Exec.Enums;
-using GameOfLife.Exec.Structs;
+﻿using GameOfLife.Exec.Structs;
 using GameOfLife.Exec.Utilities;
 
 namespace GameOfLife.Exec
@@ -10,18 +9,9 @@ namespace GameOfLife.Exec
         public HSV HSV { get; set; }
         public CMYK CMYK { get; set; }
 
-        public Color(byte r, byte g, byte b)
-        {
-            InitAsRGB(r, g, b);
-        }
-        public Color(int h, float s, float v)
-        {
-            InitAsHSV(h, s, v);
-        }
-        public Color(float c, float m, float y, float k)
-        {
-            InitAsCMYK(c, m, y, k);
-        }
+        public Color(byte r, byte g, byte b) => InitAsRGB(r, g, b);
+        public Color(int h, float s, float v) => InitAsHSV(h, s, v);
+        public Color(float c, float m, float y, float k) => InitAsCMYK(c, m, y, k);
 
         private void InitAsRGB(byte r, byte g, byte b)
         {
