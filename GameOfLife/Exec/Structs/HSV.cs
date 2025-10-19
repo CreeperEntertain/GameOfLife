@@ -2,15 +2,18 @@
 {
     internal struct HSV
     {
-        public byte H { get; set; }
-        public byte S { get; set; }
-        public byte V { get; set; }
+        public int H { get; set; }
+        public float S { get; set; }
+        public float V { get; set; }
 
-        public HSV(byte h = 0, byte s = 0, byte v = 0)
+        public HSV(int h = 0, float s = 0, float v = 0)
         {
             H = h;
             S = s;
             V = v;
         }
+
+        public override string ToString()
+        => $"";
     }
 }

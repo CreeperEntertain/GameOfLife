@@ -10,13 +10,18 @@ namespace GameOfLife.Exec
         public HSV HSV { get; set; }
         public CMYK CMYK { get; set; }
 
-        public Color(ColorType type = ColorType.RGB, byte value1 = 0, byte value2 = 0, byte value3 = 0, byte value4 = 0)
-            => new Action[]
-            {
-                () => InitAsRGB(value1, value2, value3),
-                () => InitAsHSV(value1, value2, value3),
-                () => InitAsCMYK(value1, value2, value3, value4)
-            }[(int)type]();
+        public Color(byte r, byte g, byte b)
+        {
+            InitAsRGB(r, g, b);
+        }
+        public Color(int h, float s, float v)
+        {
+            InitAsHSV(h, s, v);
+        }
+        public Color(float c, float m, float y, float k)
+        {
+            InitAsCMYK(c, m, y, k);
+        }
 
         private void InitAsRGB(byte r, byte g, byte b)
         {
@@ -24,13 +29,13 @@ namespace GameOfLife.Exec
             HSV = ConvertColor.RGBToHSV(RGB);
             CMYK = ConvertColor.RGBToCMYK(RGB);
         }
-        private void InitAsHSV(byte h, byte s, byte v)
+        private void InitAsHSV(int h, float s, float v)
         {
             HSV = new HSV(h, s, v);
             RGB = ConvertColor.HSVToRGB(HSV);
             CMYK = ConvertColor.HSVtoCMYK(HSV);
         }
-        private void InitAsCMYK(byte c, byte m, byte y, byte k)
+        private void InitAsCMYK(float c, float m, float y, float k)
         {
             CMYK = new CMYK(c, m, y, k);
             RGB = ConvertColor.CMYKToRGB(CMYK);

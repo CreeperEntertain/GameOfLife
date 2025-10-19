@@ -2,17 +2,23 @@
 {
     internal struct CMYK
     {
-        public byte C { get; set; }
-        public byte M { get; set; }
-        public byte Y { get; set; }
-        public byte K { get; set; }
+        public float C { get; set; }
+        public float M { get; set; }
+        public float Y { get; set; }
+        public float K { get; set; }
 
-        public CMYK(byte c = 0, byte m = 0, byte y = 0, byte k = 0)
+        public CMYK(float c = 0, float m = 0, float y = 0, float k = 0)
         {
             C = c;
             M = m;
             Y = y;
             K = k;
         }
+
+        public override string ToString()
+        =>  $"C: {Math.Round(C, 2) * 100}%, " +
+            $"M: {Math.Round(M, 2) * 100}%, " +
+            $"Y: {Math.Round(Y, 2) * 100}%, " +
+            $"K: {Math.Round(K, 2) * 100}%";
     }
 }
