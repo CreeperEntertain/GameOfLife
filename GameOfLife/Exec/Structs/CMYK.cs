@@ -7,7 +7,7 @@
         public float Y { get; set; }
         public float K { get; set; }
 
-        public CMYK(float c = 0, float m = 0, float y = 0, float k = 0)
+        public CMYK(float c = 0, float m = 0, float y = 0, float k = 1)
         {
             C = c;
             M = m;
