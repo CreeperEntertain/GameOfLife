@@ -31,5 +31,28 @@ namespace GameOfLife.Exec
             RGB = ConvertColor.CMYKToRGB(CMYK);
             HSV = ConvertColor.CMYKToHSV(CMYK);
         }
+
+        public Color(RGB rgb) => InitAsDirectRGB(rgb);
+        public Color(HSV hsv) => InitAsDirectHSV(hsv);
+        public Color(CMYK cmyk) => InitAsDirectCMYK(cmyk);
+
+        private void InitAsDirectRGB(RGB rgb)
+        {
+            RGB = rgb;
+            HSV = ConvertColor.RGBToHSV(rgb);
+            CMYK = ConvertColor.RGBToCMYK(rgb);
+        }
+        private void InitAsDirectHSV(HSV hsv)
+        {
+            HSV = hsv;
+            RGB = ConvertColor.HSVToRGB(hsv);
+            CMYK = ConvertColor.HSVtoCMYK(hsv);
+        }
+        private void InitAsDirectCMYK(CMYK cmyk)
+        {
+            CMYK = cmyk;
+            RGB = ConvertColor.CMYKToRGB(cmyk);
+            HSV = ConvertColor.CMYKToHSV(cmyk);
+        }
     }
 }

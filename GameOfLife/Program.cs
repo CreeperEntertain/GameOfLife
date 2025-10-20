@@ -1,7 +1,17 @@
 ﻿using GameOfLife.Exec;
 
-int h = 0;
-float s = 1f;
-float v = 1f;
-Color color = new Color(h, s, v);
-Console.WriteLine(color.RGB.Hex(false));
+namespace GameOfLife
+{
+    internal class Program
+    {
+        static void Main(string[] args) => new Game().Run();
+    }
+
+    internal class Game
+    {
+        public void Run()
+        {
+            ImageManager imageManager = new ImageManager("sas");
+        }
+    }
+}
