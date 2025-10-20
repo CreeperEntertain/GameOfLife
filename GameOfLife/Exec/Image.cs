@@ -11,9 +11,22 @@ namespace GameOfLife.Exec
 
         public Image(string imageLocation)
         {
-            image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageLocation);
-            size = new[] { image.Width, image.Height };
 
+            if (!File.Exists(imageLocation))
+                throw new ArgumentException("File must exist.");
+
+            image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageLocation);
+            AssignImageData();
+        }
+        public Image(Image<Rgba32> image)
+        {
+            this.image = image;
+            AssignImageData();
+        }
+
+        private void AssignImageData()
+        {
+            size = new[] { image.Width, image.Height };
             pixel = PixelAsRGB(size, image);
         }
 
