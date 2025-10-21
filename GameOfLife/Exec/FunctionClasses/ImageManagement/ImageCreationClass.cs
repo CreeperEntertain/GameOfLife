@@ -11,9 +11,9 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 
         }
 
-        UserInputClass userInput = new();
-        ImageManagementClass imageManagement = new();
-        ImageDataClass imageData = new();
+        readonly UserInputClass userInput = new();
+        readonly ImageManagementClass imageManagement = new();
+        readonly ImageDataClass imageData = new();
 
         public bool CheckDimensions(int[] providedScales)
         {

@@ -1,5 +1,6 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement;
 using GameOfLife.Exec.FunctionClasses.UserInput;
+using GameOfLife.Exec.Structs;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -8,6 +9,7 @@ namespace GameOfLife.Exec
     internal class ImageManager
     {
         public List<Image> images = [];
+        public readonly int ID = new Random().Next();
         private readonly Image fallbackImage = new(new Image<Rgba32>(16, 16));
 
         public ImageManager() { }
@@ -19,10 +21,10 @@ namespace GameOfLife.Exec
                 AddImage(index, createOnFailure, printResult);
         }
 
-        UserInputClass userInput = new();
-        ImageCreationClass imageCreation = new();
-        ImageManagementClass imageManagement = new();
-        ImageDataClass imageData = new();
+        readonly UserInputClass userInput = new();
+        readonly ImageCreationClass imageCreation = new();
+        readonly ImageManagementClass imageManagement = new();
+        readonly ImageDataClass imageData = new();
 
         public Image CreateImage(int width, int height)
             => imageCreation.CreateImage(width, height, ref images);
@@ -42,5 +44,34 @@ namespace GameOfLife.Exec
 
         public int[] GetImageDimensions(int index, bool printResult = false)
             => imageData.GetImageDimensions(ref images, index, printResult);
+        public RGB[,] RGB2D(Image image)
+            => imageData.RGB2D(image);
+        public byte[,] Red2D(Image image)
+            => imageData.Red2D(image);
+        public byte[,] Green2D(Image image)
+            => imageData.Green2D(image);
+        public byte[,] Blue2D(Image image)
+            => imageData.Blue2D(image);
+        public HSV[,] HSV2D(Image image)
+            => imageData.HSV2D(image);
+        public int[,] Hue2D(Image image)
+            => imageData.Hue2D(image);
+        public float[,] Saturation2D(Image image)
+            => imageData.Saturation2D(image);
+        public float[,] Volume2D(Image image)
+            => imageData.Volume2D(image);
+        public CMYK[,] CMYK2D(Image image)
+            => imageData.CMYK2D(image);
+        public float[,] Cyan2D(Image image)
+            => imageData.Cyan2D(image);
+        public float[,] Magenta2D(Image image)
+            => imageData.Magenta2D(image);
+        public float[,] Yellow2D(Image image)
+            => imageData.Yellow2D(image);
+        public float[,] Key2D(Image image)
+            => imageData.Key2D(image);
+
+        public override string ToString()
+            => images.Count() == 1 ? $"There is 1 image in list [{ID}]." : $"There are {images.Count()} images in list [{ID}].";
     }
 }
