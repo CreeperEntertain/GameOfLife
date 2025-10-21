@@ -1,4 +1,5 @@
 ﻿using GameOfLife.Exec.Enums;
+using System.Globalization;
 
 namespace GameOfLife.Exec.Structs
 {
@@ -15,8 +16,23 @@ namespace GameOfLife.Exec.Structs
             G = g;
             B = b;
         }
+        public RGB(string hexCode)
+        {
+            ReadOnlySpan<char> span = hexCode.StartsWith('#') ? hexCode.AsSpan(1) : hexCode.AsSpan();
 
-        public string Hex(bool upperCase = true, OutputChannels channel = OutputChannels.All)
+            if (span.Length != 6)
+                throw new ArgumentException("hexCode must have exactly 6 hex digits after optional '#'.", nameof(hexCode));
+
+            for (int i = 0; i < 6; i++)
+                if (!Uri.IsHexDigit(span[i]))
+                    throw new ArgumentException("hexCode must contain only hex digits.", nameof(hexCode));
+
+            R = byte.Parse(span.Slice(0, 2), NumberStyles.HexNumber);
+            G = byte.Parse(span.Slice(2, 2), NumberStyles.HexNumber);
+            B = byte.Parse(span.Slice(4, 2), NumberStyles.HexNumber);
+        }
+
+        public readonly string Hex(bool upperCase = true, OutputChannels channel = OutputChannels.All)
         {
             switch (channel)
             {
@@ -28,9 +44,10 @@ namespace GameOfLife.Exec.Structs
             }
         }
 
-        public override string ToString()
+        public override readonly string ToString()
         =>  $"R: {R}, " +
             $"G: {G}, " +
-            $"B: {B}";
+            $"B: {B} | " +
+            $"{Hex()}";
     }
 }

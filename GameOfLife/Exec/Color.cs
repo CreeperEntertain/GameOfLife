@@ -3,7 +3,7 @@ using GameOfLife.Exec.Utilities;
 
 namespace GameOfLife.Exec
 {
-    internal class Color
+    internal struct Color
     {
         public RGB RGB { get; set; }
         public HSV HSV { get; set; }
@@ -53,6 +53,16 @@ namespace GameOfLife.Exec
             CMYK = cmyk;
             RGB = ConvertColor.CMYKToRGB(cmyk);
             HSV = ConvertColor.CMYKToHSV(cmyk);
+        }
+
+        public Color(string hexCode) => InitAsRGBHex(hexCode);
+
+        private void InitAsRGBHex(string hexCode)
+        {
+            RGB rgb = new(hexCode);
+            RGB = rgb;
+            HSV = ConvertColor.RGBToHSV(rgb);
+            CMYK = ConvertColor.RGBToCMYK(rgb);
         }
     }
 }
