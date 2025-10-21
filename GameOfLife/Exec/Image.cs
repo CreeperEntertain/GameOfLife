@@ -6,8 +6,8 @@ namespace GameOfLife.Exec
     internal class Image
     {
         public Image<Rgba32> image;
-        public int[] size;
-        public Color[,] pixel;
+        public int[] size = null!;
+        public Color[,] pixel = null!;
 
         public Image(string imageLocation)
         {
@@ -26,7 +26,7 @@ namespace GameOfLife.Exec
 
         private void AssignImageData()
         {
-            size = new[] { image.Width, image.Height };
+            size = [image.Width, image.Height];
             pixel = PixelAsRGB(size, image);
         }
 
