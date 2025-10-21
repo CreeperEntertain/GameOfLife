@@ -1,0 +1,42 @@
+﻿namespace GameOfLife.Exec.FunctionClasses.ImageManagement
+{
+    internal class ImageManagementClass
+    {
+        public ImageManagementClass()
+        {
+
+        }
+
+        public bool AddImage(ref List<Image> image, Image fallbackImage, string imageReference, bool createOnFailure = true, bool printResult = false)
+        {
+            bool isSuccessful = File.Exists(imageReference);
+            string print = "";
+            if (printResult)
+                print += isSuccessful ? $"Image added." : "Image not found.";
+            if (createOnFailure)
+            {
+                image.Add(isSuccessful ? new Image(imageReference) : fallbackImage);
+                if (printResult)
+                    print += " Creating empty 16x16 image instead.";
+            }
+            Console.Write(printResult ? print + "\n" : print);
+            return isSuccessful;
+        }
+        public bool RemoveImage(ref List<Image> image, int index, bool printResult = false)
+        {
+            bool isSuccessful = image.Remove(image[index]);
+            if (printResult)
+                Console.WriteLine(isSuccessful ? $"Successfully removed image {index}." : $"Failed to remove image {index}.");
+            return isSuccessful;
+        }
+        public Image? GetImage(ref List<Image> image, int index, bool printResult = false)
+        {
+            bool isSuccessful = image.Count > index;
+            if (isSuccessful)
+                return image[index];
+            if (printResult)
+                Console.WriteLine("Image does not exist.");
+            return null;
+        }
+    }
+}
