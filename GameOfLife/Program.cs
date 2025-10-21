@@ -1,5 +1,4 @@
 ﻿using GameOfLife.Exec;
-using GameOfLife.Exec.Structs;
 
 namespace GameOfLife
 {
@@ -30,7 +29,7 @@ namespace GameOfLife
                 width = image.size[0];
                 height = image.size[1];
             }
-            
+
             Console.WriteLine($"The new image is {width}x{height} pixels large.");
             Console.Write(image != null ? $"Pixel [3, 4] -- {image.pixel[3, 4].RGB}\n" : "");
         }
