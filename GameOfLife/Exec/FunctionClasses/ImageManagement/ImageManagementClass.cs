@@ -13,6 +13,8 @@
             string print = "";
             if (printResult)
                 print += isSuccessful ? $"Image added." : "Image not found.";
+            if (isSuccessful)
+                image.Add(new Image(imageReference));
             if (createOnFailure)
             {
                 image.Add(isSuccessful ? new Image(imageReference) : fallbackImage);
