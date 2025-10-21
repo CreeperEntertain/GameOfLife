@@ -1,4 +1,5 @@
-﻿using SixLabors.ImageSharp;
+﻿using GameOfLife.Exec.Utilities;
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace GameOfLife.Exec
@@ -7,7 +8,7 @@ namespace GameOfLife.Exec
     {
         public Image<Rgba32> image;
         public int[] size = null!;
-        public Color[,] pixel = null!;
+        public Color[,] pixel { get; set; }
 
         public Image(string imageLocation)
         {
@@ -16,38 +17,17 @@ namespace GameOfLife.Exec
                 throw new ArgumentException("File must exist.");
 
             image = SixLabors.ImageSharp.Image.Load<Rgba32>(imageLocation);
-            AssignImageData();
+            size = [image.Width, image.Height];
+            pixel = PixelAsRGB(size, image);
         }
         public Image(Image<Rgba32> image)
         {
             this.image = image;
-            AssignImageData();
+            size = [this.image.Width, this.image.Height];
+            pixel = PixelAsRGB(size, this.image);
         }
 
-        private void AssignImageData()
-        {
-            size = [image.Width, image.Height];
-            pixel = PixelAsRGB(size, image);
-        }
-
-        private Color[,] PixelAsRGB(int[] size, Image<Rgba32> image)
-        {
-            int width = size[0];
-            int height = size[1];
-
-            Color[,] rgbArrayOut = new Color[width, height];
-
-            for (int x = 0; x < width; x++)
-            {
-                for (int y = 0; y < height; y++)
-                {
-                    var pixel = image[x, y];
-
-                    rgbArrayOut[x, y] = new Color(pixel.R, pixel.G, pixel.B);
-                }
-            }
-
-            return rgbArrayOut;
-        }
+        public Color[,] PixelAsRGB(int[] size, Image<Rgba32> image)
+            => PixelAsRGBClass.Exec(size, image);
     }
 }

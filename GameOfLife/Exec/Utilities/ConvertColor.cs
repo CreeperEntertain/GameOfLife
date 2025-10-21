@@ -91,7 +91,7 @@ namespace GameOfLife.Exec.Utilities
             return hsvOut;
         }
         public static HSV CMYKToHSV(CMYK receivedColor)
-        =>  RGBToHSV(CMYKToRGB(receivedColor));
+            => RGBToHSV(CMYKToRGB(receivedColor));
 
         public static CMYK RGBToCMYK(RGB receivedColor)
         {
@@ -125,6 +125,6 @@ namespace GameOfLife.Exec.Utilities
             return cmykOut;
         }
         public static CMYK HSVtoCMYK(HSV receivedColor)
-        =>  RGBToCMYK(HSVToRGB(receivedColor));
+            => RGBToCMYK(HSVToRGB(receivedColor));
     }
 }
