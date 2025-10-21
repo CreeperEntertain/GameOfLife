@@ -1,6 +1,7 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement;
 using GameOfLife.Exec.FunctionClasses.UserInput;
 using GameOfLife.Exec.Structs;
+using GameOfLife.Exec.Utilities;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
