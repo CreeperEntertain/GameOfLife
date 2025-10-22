@@ -1,4 +1,5 @@
-﻿using GameOfLife.Exec.Utilities;
+﻿using GameOfLife.Exec.Structs;
+using GameOfLife.Exec.Utilities;
 
 namespace GameOfLife.Exec
 {
@@ -30,10 +31,16 @@ namespace GameOfLife.Exec
             image = imageManager.GetImage(0);
 
             if (image != null)
-            {
-                bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManager.Volume2D(image), .5f);
-                PrintImage.FromBoolArray(thresholdArray);
-            }
+                Simulate(image);
+        }
+
+        private void Simulate(Image image)
+        {
+            bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManager.Volume2D(image), .5f);
+
+            Grid grid = new(image.size);
+            grid.SetStates(thresholdArray);
+            PrintImage.FromBoolArray(grid.GetStates());
         }
     }
 }

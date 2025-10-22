@@ -16,6 +16,20 @@ namespace GameOfLife.Exec.Structs
             G = g;
             B = b;
         }
+
+        public RGB(byte singleChannel, InputChannelsRGB inputChannel)
+            => SetChannel(singleChannel, inputChannel);
+        private void SetChannel(byte value, InputChannelsRGB channel)
+        {
+            R = G = B = 0;
+            switch (channel)
+            {
+                case InputChannelsRGB.R: R = value; break;
+                case InputChannelsRGB.G: G = value; break;
+                case InputChannelsRGB.B: B = value; break;
+            }
+        }
+
         public RGB(string hexCode)
         {
             ReadOnlySpan<char> span = hexCode.StartsWith('#') ? hexCode.AsSpan(1) : hexCode.AsSpan();

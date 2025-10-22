@@ -1,5 +1,4 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement;
-using System.Drawing.Drawing2D;
 using System.Runtime.CompilerServices;
 
 namespace GameOfLife.Exec.Structs
