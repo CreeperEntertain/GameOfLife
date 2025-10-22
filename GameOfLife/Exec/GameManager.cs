@@ -41,6 +41,20 @@ namespace GameOfLife.Exec
             Grid grid = new(image.size);
             grid.SetStates(thresholdArray);
             PrintImage.FromBoolArray(grid.GetStates());
+            Console.ReadKey();
+            Console.Clear();
+            Console.CursorVisible = false;
+
+            int simulationSteps = 125;
+            for (int i = 0; i < simulationSteps; i++)
+            {
+                Console.SetCursorPosition(0, 0);
+                grid.SimulateSteps(1);
+                PrintImage.FromBoolArray(grid.GetStates());
+                Thread.Sleep(1);
+            }
+            Console.CursorVisible = true;
+            Console.WriteLine("Simulation done.");
         }
     }
 }

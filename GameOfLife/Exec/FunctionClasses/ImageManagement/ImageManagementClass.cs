@@ -9,6 +9,7 @@
 
         public bool AddImage(ref List<Image> image, Image fallbackImage, string imageReference, bool createOnFailure = true, bool printResult = false)
         {
+            imageReference = imageReference.Replace("\"", "");
             bool isSuccessful = File.Exists(imageReference);
             string print = "";
             if (printResult)
@@ -24,6 +25,7 @@
             Console.Write(printResult ? print + "\n" : print);
             return isSuccessful;
         }
+
         public bool RemoveImage(ref List<Image> image, int index, bool printResult = false)
         {
             bool isSuccessful = image.Remove(image[index]);

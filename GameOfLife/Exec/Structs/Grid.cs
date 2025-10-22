@@ -32,6 +32,11 @@ namespace GameOfLife.Exec.Structs
                 for (int y = 0; y < states.GetLength(1); y++)
                     cells[x, y].alive = states[x, y];
         }
+        public void SimulateSteps(byte steps)
+        {
+            for (int i = 0; i < steps; i++)
+                SetStates(GetUpdatedCells());
+        }
 
         public bool[,] GetUpdatedCells()
         {
@@ -45,15 +50,16 @@ namespace GameOfLife.Exec.Structs
         }
         private bool GetUpdatedSingleCell(int x, int y, int xBounds, int yBounds)
         {
-            int[] dx = { -1, 0, 1, -1, 1, -1, 0, 1 };
-            int[] dy = { -1, -1, -1, 0, 0, 1, 1, 1 };
+            int[] dx = [-1, 0, 1, -1, 1, -1, 0, 1];
+            int[] dy = [-1, -1, -1, 0, 0, 1, 1, 1];
 
             byte aliveCount = 0;
             for (int i = 0; i < 8; i++)
             {
                 int nx = Wrap(x + dx[i], xBounds);
                 int ny = Wrap(y + dy[i], yBounds);
-                if (cells[nx, ny].alive) aliveCount++;
+                if (cells[nx, ny].alive)
+                    aliveCount++;
             }
 
             bool isThisAlive = cells[x, y].alive;
