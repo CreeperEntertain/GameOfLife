@@ -1,4 +1,6 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement;
+using System.Drawing.Drawing2D;
+using System.Runtime.CompilerServices;
 
 namespace GameOfLife.Exec.Structs
 {
@@ -32,7 +34,7 @@ namespace GameOfLife.Exec.Structs
                     cells[x, y].alive = states[x, y];
         }
 
-        public void UpdateCells()
+        public bool[,] GetUpdatedCells()
         {
             int xScale = cells.GetLength(0);
             int yScale = cells.GetLength(1);
@@ -40,12 +42,30 @@ namespace GameOfLife.Exec.Structs
             for (int x = 0; x < xScale; x++)
                 for (int y = 0; y < yScale; y++)
                     newStates[x, y] = GetUpdatedSingleCell(x, y, xScale, yScale);
-            SetStates(newStates);
+            return newStates;
         }
         private bool GetUpdatedSingleCell(int x, int y, int xBounds, int yBounds)
         {
-            // TODO: Neighbor-based state updating
-            return false;
+            int[] dx = { -1, 0, 1, -1, 1, -1, 0, 1 };
+            int[] dy = { -1, -1, -1, 0, 0, 1, 1, 1 };
+
+            byte aliveCount = 0;
+            for (int i = 0; i < 8; i++)
+            {
+                int nx = Wrap(x + dx[i], xBounds);
+                int ny = Wrap(y + dy[i], yBounds);
+                if (cells[nx, ny].alive) aliveCount++;
+            }
+
+            bool isThisAlive = cells[x, y].alive;
+
+            if (isThisAlive)
+                return (aliveCount == 2 || aliveCount == 3);
+            return (aliveCount == 3);
         }
+
+        [MethodImpl(MethodImplOptions.AggressiveInlining)]
+        private static int Wrap(int value, int max)
+            => (value % max + max) % max;
     }
 }
