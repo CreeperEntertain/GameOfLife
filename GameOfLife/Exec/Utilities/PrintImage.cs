@@ -11,10 +11,17 @@
                 thresholdArray = ThresholdChecks.Float2DGreater(imageManager.Volume2D(image), threshold);
             else
                 thresholdArray = ThresholdChecks.Float2DLower(imageManager.Volume2D(image), threshold);
-            for (int y = 0; y < thresholdArray.GetLength(1); y++)
+            PrintBoolArray(thresholdArray);
+        }
+        public static void FromBoolArray(bool[,] boolArray)
+            => PrintBoolArray(boolArray);
+
+        private static void PrintBoolArray(bool[,] boolArray)
+        {
+            for (int y = 0; y < boolArray.GetLength(1); y++)
             {
-                for (int x = 0; x < thresholdArray.GetLength(0); x++)
-                    PrintThresholdChar(thresholdArray[x, y]);
+                for (int x = 0; x < boolArray.GetLength(0); x++)
+                    PrintThresholdChar(boolArray[x, y]);
                 Console.WriteLine();
             }
         }

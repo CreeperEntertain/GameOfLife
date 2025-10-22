@@ -30,7 +30,10 @@ namespace GameOfLife.Exec
             image = imageManager.GetImage(0);
 
             if (image != null)
-                PrintImage.VolumeAbove(imageManager, image);
+            {
+                bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManager.Volume2D(image), .5f);
+                PrintImage.FromBoolArray(thresholdArray);
+            }
         }
     }
 }
