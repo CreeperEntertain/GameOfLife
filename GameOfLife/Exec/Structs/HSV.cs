@@ -2,9 +2,9 @@
 {
     internal struct HSV(int h = 0, float s = 0, float v = 0)
     {
-        public int H { get; set; } = h;
-        public float S { get; set; } = s;
-        public float V { get; set; } = v;
+        public int H = h;
+        public float S = s;
+        public float V = v;
 
         public override readonly string ToString()
         =>  $"H: {H}, " +

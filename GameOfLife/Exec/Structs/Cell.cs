@@ -1,8 +1,7 @@
 ﻿namespace GameOfLife.Exec.Structs
 {
-    internal struct Cell()
+    internal struct Cell
     {
-        public bool alive { get; set; }
-
+        public bool alive;
     }
 }

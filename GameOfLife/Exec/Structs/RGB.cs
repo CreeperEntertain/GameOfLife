@@ -6,9 +6,9 @@ namespace GameOfLife.Exec.Structs
     internal struct RGB
     {
 
-        public byte R { get; set; }
-        public byte G { get; set; }
-        public byte B { get; set; }
+        public byte R;
+        public byte G;
+        public byte B;
 
         public RGB(byte r = 0, byte g = 0, byte b = 0)
         {
