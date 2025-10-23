@@ -2,11 +2,6 @@
 {
     internal class ImageManagementClass
     {
-        public ImageManagementClass()
-        {
-
-        }
-
         public bool AddImage(ref List<Image> image, Image fallbackImage, string imageReference, bool createOnFailure = true, bool printResult = false)
         {
             imageReference = imageReference.Replace("\"", "");

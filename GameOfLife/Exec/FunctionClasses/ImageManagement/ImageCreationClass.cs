@@ -6,11 +6,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
     internal class ImageCreationClass
     {
-        public ImageCreationClass()
-        {
-
-        }
-
         readonly UserInputClass userInput = new();
         readonly ImageManagementClass imageManagement = new();
         readonly ImageDataClass imageData = new();

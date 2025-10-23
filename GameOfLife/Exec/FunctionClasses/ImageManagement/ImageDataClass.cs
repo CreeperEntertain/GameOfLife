@@ -5,11 +5,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
     internal class ImageDataClass
     {
-        public ImageDataClass()
-        {
-
-        }
-
         readonly ImageManagementClass imageManagement = new();
         readonly RGBRetrieve rgbRetrieve = new();
         readonly HSVRetrieve hsvRetrieve = new();

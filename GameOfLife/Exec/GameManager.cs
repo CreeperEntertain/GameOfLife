@@ -1,4 +1,5 @@
-﻿using GameOfLife.Exec.Structs;
+﻿using GameOfLife.Exec.FunctionClasses.GameManagement;
+using GameOfLife.Exec.Structs;
 using GameOfLife.Exec.Utilities;
 
 namespace GameOfLife.Exec
@@ -6,12 +7,17 @@ namespace GameOfLife.Exec
     internal class GameManager
     {
         public readonly ImageManager imageManager = new();
+        private readonly RunGame runGame = new();
+
         public GameManager() => Init();
 
         private void Init()
         {
-            ForcefulImageAddingBecauseFuckThePlayer(imageManager);
+            // ForcefulImageAddingBecauseFuckThePlayer(imageManager);
+
         }
+
+
 
         private void ForcefulImageAddingBecauseFuckThePlayer(ImageManager imageManager)
         {
