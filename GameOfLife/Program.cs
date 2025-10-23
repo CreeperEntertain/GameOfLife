@@ -13,6 +13,7 @@ namespace GameOfLife
         public void Run()
         {
             GameManager game = new();
+            game.Init();
         }
     }
 }

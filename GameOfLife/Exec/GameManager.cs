@@ -1,45 +1,24 @@
 ﻿using GameOfLife.Exec.FunctionClasses.GameManagement;
-using GameOfLife.Exec.Structs;
-using GameOfLife.Exec.Utilities;
 
 namespace GameOfLife.Exec
 {
     internal class GameManager
     {
-        public readonly ImageManager imageManager = new();
-        private readonly RunGame runGame = new();
+        public List<ImageManager> imageManagers = [];
+        private readonly RunGame game;
         private readonly GameImages gameImages = new();
 
-        public GameManager() => Init();
-
-        private void Init()
+        public GameManager()
         {
-            Image? image = gameImages.ImageAdding(imageManager, false);
-            if (image != null)
-                Simulate(image);
+            imageManagers.Add(new());
+            game = new(imageManagers);
         }
 
-        private void Simulate(Image image)
+        public void Init()
         {
-            bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManager.Volume2D(image), .5f);
-
-            Grid grid = new(image.size);
-            grid.SetStates(thresholdArray);
-            PrintImage.FromBoolArray(grid.GetStates());
-            Console.ReadKey();
-            Console.Clear();
-            Console.CursorVisible = false;
-
-            int simulationSteps = 125;
-            for (int i = 0; i < simulationSteps; i++)
-            {
-                Console.SetCursorPosition(0, 0);
-                grid.SimulateSteps(1);
-                PrintImage.FromBoolArray(grid.GetStates());
-                Thread.Sleep(1);
-            }
-            Console.CursorVisible = true;
-            Console.WriteLine("Simulation done.");
+            Image? image = gameImages.ImageAdding(imageManagers[0], false);
+            if (image != null)
+                game.SimulateSingleGame(image, 0);
         }
     }
 }
