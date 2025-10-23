@@ -9,6 +9,9 @@ namespace GameOfLife.Exec.Structs
 
         private ImageCreationClass imageCreation = new();
 
+        private readonly int[] dx = [-1, 0, 1, -1, 1, -1, 0, 1];
+        private readonly int[] dy = [-1, -1, -1, 0, 0, 1, 1, 1];
+
         public Grid(int[] dimensions)
         {
             if (!imageCreation.CheckDimensions(dimensions))
@@ -50,9 +53,6 @@ namespace GameOfLife.Exec.Structs
         }
         private bool GetUpdatedSingleCell(int x, int y, int xBounds, int yBounds)
         {
-            int[] dx = [-1, 0, 1, -1, 1, -1, 0, 1];
-            int[] dy = [-1, -1, -1, 0, 0, 1, 1, 1];
-
             byte aliveCount = 0;
             for (int i = 0; i < 8; i++)
             {

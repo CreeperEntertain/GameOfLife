@@ -8,34 +8,13 @@ namespace GameOfLife.Exec
     {
         public readonly ImageManager imageManager = new();
         private readonly RunGame runGame = new();
+        private readonly GameImages gameImages = new();
 
         public GameManager() => Init();
 
         private void Init()
         {
-            // ForcefulImageAddingBecauseFuckThePlayer(imageManager);
-
-        }
-
-
-
-        private void ForcefulImageAddingBecauseFuckThePlayer(ImageManager imageManager)
-        {
-            Image? image;
-            bool imageExists;
-            do
-            {
-                Console.Write("Drag and drop in an image, then hit enter: ");
-                string providedPath = Console.ReadLine() ?? "";
-                imageExists = imageManager.AddImage(providedPath, false);
-                if (!imageExists)
-                {
-                    Console.Clear();
-                    Console.WriteLine("Image does not exist, please provide one.");
-                }
-            } while (!imageExists);
-            image = imageManager.GetImage(0);
-
+            Image? image = gameImages.ImageAdding(imageManager, false);
             if (image != null)
                 Simulate(image);
         }
