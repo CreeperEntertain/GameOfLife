@@ -45,7 +45,7 @@ namespace GameOfLife.Exec.Structs
         }
 
         public override readonly string ToString()
-        =>  $"H: {H}, " +
+        =>  $"H: {H}°, " +
             $"S: {Math.Round(S, 2) * 100}%, " +
             $"V: {Math.Round(V, 2) * 100}%";
     }
