@@ -1,7 +1,6 @@
-﻿using GameOfLife.Exec.Structs;
-using GameOfLife.Exec.Utilities;
+﻿using GameOfLife.Exec.Utilities;
 
-namespace GameOfLife.Exec
+namespace GameOfLife.Exec.Structs
 {
     internal struct Color
     {

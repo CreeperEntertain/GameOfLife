@@ -1,16 +1,17 @@
-﻿using SixLabors.ImageSharp;
+﻿using GameOfLife.Exec.Structs;
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace GameOfLife.Exec.Utilities
 {
     internal static class PixelAsRGBClass
     {
-        public static Color[,] Exec(int[] size, Image<Rgba32> image)
+        public static Structs.Color[,] Exec(int[] size, Image<Rgba32> image)
         {
             int width = size[0];
             int height = size[1];
 
-            Color[,] rgbArrayOut = new Color[width, height];
+            Structs.Color[,] rgbArrayOut = new Structs.Color[width, height];
 
             for (int x = 0; x < width; x++)
             {
@@ -18,7 +19,7 @@ namespace GameOfLife.Exec.Utilities
                 {
                     var pixel = image[x, y];
 
-                    rgbArrayOut[x, y] = new Color(pixel.R, pixel.G, pixel.B);
+                    rgbArrayOut[x, y] = new Structs.Color(pixel.R, pixel.G, pixel.B);
                 }
             }
 

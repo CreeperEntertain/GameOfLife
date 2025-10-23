@@ -8,7 +8,7 @@ namespace GameOfLife.Exec
     {
         public Image<Rgba32> image;
         public int[] size = null!;
-        public Color[,] pixel { get; set; }
+        public Structs.Color[,] pixel { get; set; }
 
         public Image(string imageLocation)
         {
@@ -27,7 +27,7 @@ namespace GameOfLife.Exec
             pixel = PixelAsRGB(size, this.image);
         }
 
-        public Color[,] PixelAsRGB(int[] size, Image<Rgba32> image)
+        public Structs.Color[,] PixelAsRGB(int[] size, Image<Rgba32> image)
             => PixelAsRGBClass.Exec(size, image);
     }
 }
