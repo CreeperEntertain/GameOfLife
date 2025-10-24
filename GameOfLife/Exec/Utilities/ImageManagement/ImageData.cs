@@ -4,11 +4,11 @@ using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
 
 namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
-    internal class ImageDataClass
+    internal static class ImageData
     {
-        readonly ImageManagementClass imageManagement = new();
+        static readonly ImageManagementClass imageManagement = new();
 
-        public int[] GetImageDimensions(ref List<Image> imageList, int index, bool printResult)
+        public static int[] GetImageDimensions(ref List<Image> imageList, int index, bool printResult)
         {
             Image? image = imageManagement.GetImage(ref imageList, index, printResult);
             if (image != null)
@@ -16,33 +16,33 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             return [0, 0];
         }
 
-        public RGB[,] RGB2D(Image image)
+        public static RGB[,] RGB2D(Image image)
             => RGBRetrieve.RGB2D(image);
-        public byte[,] Red2D(Image image)
+        public static byte[,] Red2D(Image image)
             => RGBRetrieve.Red2D(image);
-        public byte[,] Green2D(Image image)
+        public static byte[,] Green2D(Image image)
             => RGBRetrieve.Green2D(image);
-        public byte[,] Blue2D(Image image)
+        public static byte[,] Blue2D(Image image)
             => RGBRetrieve.Blue2D(image);
 
-        public HSV[,] HSV2D(Image image)
+        public static HSV[,] HSV2D(Image image)
             => HSVRetrieve.HSV2D(image);
-        public int[,] Hue2D(Image image)
+        public static int[,] Hue2D(Image image)
             => HSVRetrieve.Hue2D(image);
-        public float[,] Saturation2D(Image image)
+        public static float[,] Saturation2D(Image image)
             => HSVRetrieve.Saturation2D(image);
-        public float[,] Volume2D(Image image)
+        public static float[,] Volume2D(Image image)
             => HSVRetrieve.Volume2D(image);
 
-        public CMYK[,] CMYK2D(Image image)
+        public static CMYK[,] CMYK2D(Image image)
             => CMYKRetrieve.CMYK2D(image);
-        public float[,] Cyan2D(Image image)
+        public static float[,] Cyan2D(Image image)
             => CMYKRetrieve.Cyan2D(image);
-        public float[,] Magenta2D(Image image)
+        public static float[,] Magenta2D(Image image)
             => CMYKRetrieve.Magenta2D(image);
-        public float[,] Yellow2D(Image image)
+        public static float[,] Yellow2D(Image image)
             => CMYKRetrieve.Yellow2D(image);
-        public float[,] Key2D(Image image)
+        public static float[,] Key2D(Image image)
             => CMYKRetrieve.Key2D(image);
     }
 }

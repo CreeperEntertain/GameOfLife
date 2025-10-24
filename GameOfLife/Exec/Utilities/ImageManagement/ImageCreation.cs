@@ -8,7 +8,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
     internal static class ImageCreation
     {
         static readonly ImageManagementClass imageManagement = new();
-        static readonly ImageDataClass imageData = new();
 
         public static bool CheckDimensions(int[] providedScales)
         {
@@ -50,7 +49,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             {
                 Image? image = imageManagement.GetImage(ref imageList, 0, false);
 
-                int[] imageDimensions = imageData.GetImageDimensions(ref imageList, 0, printResult);
+                int[] imageDimensions = ImageData.GetImageDimensions(ref imageList, 0, printResult);
                 int width = imageDimensions[0];
                 int height = imageDimensions[1];
 
