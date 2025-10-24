@@ -1,15 +1,10 @@
 ﻿using GameOfLife.Exec.Structs;
 
-namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
+namespace GameOfLife.Exec.Utilities.ImageManagement.ImageData
 {
-    internal class RGBRetrieve
+    internal static class RGBRetrieve
     {
-        public RGBRetrieve()
-        {
-
-        }
-
-        public RGB[,] RGB2D(Image image)
+        public static RGB[,] RGB2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             RGB[,] rgbArray = new RGB[image.size[0], image.size[1]];
@@ -19,7 +14,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
             return rgbArray;
         }
 
-        public byte[,] Red2D(Image image)
+        public static byte[,] Red2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             byte[,] byteArray = new byte[image.size[0], image.size[1]];
@@ -28,7 +23,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
                     byteArray[x, y] = colorArray[x, y].RGB.R;
             return byteArray;
         }
-        public byte[,] Green2D(Image image)
+        public static byte[,] Green2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             byte[,] byteArray = new byte[image.size[0], image.size[1]];
@@ -37,7 +32,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
                     byteArray[x, y] = colorArray[x, y].RGB.G;
             return byteArray;
         }
-        public byte[,] Blue2D(Image image)
+        public static byte[,] Blue2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             byte[,] byteArray = new byte[image.size[0], image.size[1]];

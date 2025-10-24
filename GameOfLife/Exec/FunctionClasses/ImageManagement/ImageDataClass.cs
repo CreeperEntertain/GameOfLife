@@ -1,5 +1,4 @@
-﻿using GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData;
-using GameOfLife.Exec.Structs;
+﻿using GameOfLife.Exec.Structs;
 using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
 
 namespace GameOfLife.Exec.FunctionClasses.ImageManagement
@@ -7,8 +6,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
     internal class ImageDataClass
     {
         readonly ImageManagementClass imageManagement = new();
-        readonly RGBRetrieve rgbRetrieve = new();
-        readonly HSVRetrieve hsvRetrieve = new();
 
         public int[] GetImageDimensions(ref List<Image> imageList, int index, bool printResult)
         {
@@ -19,22 +16,22 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
         }
 
         public RGB[,] RGB2D(Image image)
-            => rgbRetrieve.RGB2D(image);
+            => RGBRetrieve.RGB2D(image);
         public byte[,] Red2D(Image image)
-            => rgbRetrieve.Red2D(image);
+            => RGBRetrieve.Red2D(image);
         public byte[,] Green2D(Image image)
-            => rgbRetrieve.Green2D(image);
+            => RGBRetrieve.Green2D(image);
         public byte[,] Blue2D(Image image)
-            => rgbRetrieve.Blue2D(image);
+            => RGBRetrieve.Blue2D(image);
 
         public HSV[,] HSV2D(Image image)
-            => hsvRetrieve.HSV2D(image);
+            => HSVRetrieve.HSV2D(image);
         public int[,] Hue2D(Image image)
-            => hsvRetrieve.Hue2D(image);
+            => HSVRetrieve.Hue2D(image);
         public float[,] Saturation2D(Image image)
-            => hsvRetrieve.Saturation2D(image);
+            => HSVRetrieve.Saturation2D(image);
         public float[,] Volume2D(Image image)
-            => hsvRetrieve.Volume2D(image);
+            => HSVRetrieve.Volume2D(image);
 
         public CMYK[,] CMYK2D(Image image)
             => CMYKRetrieve.CMYK2D(image);
