@@ -18,7 +18,7 @@ namespace GameOfLife.Exec
         {
             Image? image = gameImages.ImageAdding(imageManagers[0], false);
             if (image != null)
-                game.SimulateSingleGame(image, 0);
+                game.SimulateSingleGame(image.Value, 0);
         }
     }
 }

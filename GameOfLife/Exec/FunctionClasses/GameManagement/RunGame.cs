@@ -16,13 +16,23 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
             Console.Clear();
             Console.CursorVisible = false;
 
-            int simulationSteps = 125;
+            RunSim(grid, 125, 1);
+        }
+
+        public void RunSim(Grid grid, int simulationSteps, byte delayBetweenSteps)
+        {
             for (int i = 0; i < simulationSteps; i++)
             {
                 Console.SetCursorPosition(0, 0);
                 grid.SimulateSteps(1);
-                PrintImage.FromBoolArray(grid.GetStates());
-                Thread.Sleep(1);
+                bool[,] gridState = grid.GetStates();
+                PrintImage.FromBoolArray(gridState);
+                if (UserInput.IsKeyDown(ConsoleKey.Escape))
+                {
+                    Console.WriteLine("\nSimulation cancelled.");
+                    return;
+                }
+                Thread.Sleep(delayBetweenSteps);
             }
             Console.CursorVisible = true;
             Console.WriteLine("Simulation done.");

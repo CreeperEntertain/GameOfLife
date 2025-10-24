@@ -1,13 +1,31 @@
-﻿namespace GameOfLife.Exec.FunctionClasses.UserInput
-{
-    internal class UserInputClass
-    {
-        public UserInputClass()
-        {
+﻿using System.Collections.Concurrent;
 
+namespace GameOfLife.Exec.Utilities
+{
+    internal static class UserInput
+    {
+        private static readonly ConcurrentQueue<ConsoleKey> keyQueue = new();
+        static UserInput()
+            => new Thread(() =>
+            { while (true) KeyEnqueuing(); })
+            { IsBackground = true }.Start();
+        private static void KeyEnqueuing()
+        {
+            while (Console.KeyAvailable)
+                keyQueue.Enqueue(Console.ReadKey(intercept: true).Key);
+            Thread.Sleep(5);
         }
 
-        public int[] ProvideScales()
+        public static bool IsKeyDown(ConsoleKey key)
+        {
+            bool found = false;
+            while (keyQueue.TryDequeue(out var pressed))
+                found |= pressed == key;
+            return found;
+        }
+
+
+        public static int[] ProvideScales()
         {
             Console.WriteLine("Type 'cancel' to cancel.");
             Console.Write("WIDTH:");

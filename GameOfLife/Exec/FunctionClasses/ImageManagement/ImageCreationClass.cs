@@ -1,4 +1,4 @@
-﻿using GameOfLife.Exec.FunctionClasses.UserInput;
+﻿using GameOfLife.Exec.Utilities;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -6,7 +6,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
     internal class ImageCreationClass
     {
-        readonly UserInputClass userInput = new();
         readonly ImageManagementClass imageManagement = new();
         readonly ImageDataClass imageData = new();
 
@@ -29,12 +28,12 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             image.Add(addedImage);
             return addedImage;
         }
-        public bool CreateImageFromUserInput(ref List<Image> image, UserInputClass userInput)
+        public bool CreateImageFromUserInput(ref List<Image> image)
         {
             int[] providedScales;
             do
             {
-                providedScales = userInput.ProvideScales();
+                providedScales = UserInput.ProvideScales();
                 if (providedScales.Length == 0)
                     return false;
             }
@@ -45,7 +44,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
         }
         public Image? CreateImageProcess(ref List<Image> imageList, bool printResult)
         {
-            bool didCreateImage = CreateImageFromUserInput(ref imageList, userInput);
+            bool didCreateImage = CreateImageFromUserInput(ref imageList);
             if (didCreateImage)
             {
                 Image? image = imageManagement.GetImage(ref imageList, 0, false);

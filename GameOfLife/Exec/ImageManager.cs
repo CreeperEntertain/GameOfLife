@@ -1,5 +1,4 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement;
-using GameOfLife.Exec.FunctionClasses.UserInput;
 using GameOfLife.Exec.Structs;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
@@ -21,7 +20,6 @@ namespace GameOfLife.Exec
                 AddImage(index, createOnFailure, printResult);
         }
 
-        readonly UserInputClass userInput = new();
         readonly ImageCreationClass imageCreation = new();
         readonly ImageManagementClass imageManagement = new();
         readonly ImageDataClass imageData = new();
@@ -31,7 +29,7 @@ namespace GameOfLife.Exec
         public bool CheckDimensions(int[] dimensions)
             => imageCreation.CheckDimensions(dimensions);
         public bool CreateImageFromUserInput()
-            => imageCreation.CreateImageFromUserInput(ref images, userInput);
+            => imageCreation.CreateImageFromUserInput(ref images);
         public Image? CreateImageProcess(bool printResult = true)
             => imageCreation.CreateImageProcess(ref images, printResult);
 

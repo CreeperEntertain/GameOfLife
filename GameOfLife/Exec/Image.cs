@@ -4,11 +4,11 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace GameOfLife.Exec
 {
-    internal class Image
+    internal struct Image
     {
         public Image<Rgba32> image;
-        public int[] size = null!;
-        public Structs.Color[,] pixel { get; set; }
+        public int[] size;
+        public Structs.Color[,] pixel;
 
         public Image(string imageLocation)
         {

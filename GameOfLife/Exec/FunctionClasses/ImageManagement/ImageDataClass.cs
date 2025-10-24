@@ -14,7 +14,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
         {
             Image? image = imageManagement.GetImage(ref imageList, index, printResult);
             if (image != null)
-                return [image.size[0], image.size[1]];
+                return [image.Value.size[0], image.Value.size[1]];
             return [0, 0];
         }
 
