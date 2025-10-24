@@ -5,7 +5,7 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
 {
     internal class RunGame(List<ImageManager> imageManagers)
     {
-        public void SimulateSingleGame(Image image, int imageManagerIndex)
+        public void SimulateSingleGame(Image image, int imageManagerIndex, bool addResultsToImageManager = false)
         {
             bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManagers[imageManagerIndex].Volume2D(image), .5f);
 
@@ -16,17 +16,24 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
             Console.Clear();
             Console.CursorVisible = false;
 
-            RunSim(grid, 125, 1);
+            if (addResultsToImageManager)
+                RunSim(grid, 125, 1, imageManagerIndex);
+            else
+                RunSim(grid, 125, 1);
         }
 
-        public void RunSim(Grid grid, int simulationSteps, byte delayBetweenSteps)
+        public void RunSim(Grid grid, int simulationSteps, byte delayBetweenSteps, int? imageManagerIndex = null)
         {
+            int xScale = grid.cells.GetLength(0);
+            int yScale = grid.cells.GetLength(1);
             for (int i = 0; i < simulationSteps; i++)
             {
                 Console.SetCursorPosition(0, 0);
                 grid.SimulateSteps(1);
                 bool[,] gridState = grid.GetStates();
                 PrintImage.FromBoolArray(gridState);
+                if (imageManagerIndex != null)
+                    imageManagers[imageManagerIndex.Value].AddImageDirectly(new Image(ConstructColorArray.From2DFloatArray(BackConvert.BoolToFloat2D(gridState), Enums.InputChannelsFloat.V)));
                 if (UserInput.IsKeyDown(ConsoleKey.Escape))
                 {
                     Console.WriteLine("\nSimulation cancelled.");

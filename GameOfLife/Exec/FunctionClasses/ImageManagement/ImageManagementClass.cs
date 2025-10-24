@@ -20,6 +20,21 @@
             Console.Write(printResult ? print + "\n" : print);
             return isSuccessful;
         }
+        public bool AddImageDirectly(ref List<Image> image, Image imageToAdd, bool printResult = false)
+        {
+            int imageListLength = image.Count;
+            image.Add(imageToAdd);
+            bool succeeded = imageListLength == image.Count;
+            Console.Write
+            (
+                printResult
+                ? succeeded
+                    ? "Failed to add image.\n"
+                    : "Successfully added image.\n"
+                : ""
+            );
+            return succeeded ? true : false;
+        }
 
         public bool RemoveImage(ref List<Image> image, int index, bool printResult = false)
         {

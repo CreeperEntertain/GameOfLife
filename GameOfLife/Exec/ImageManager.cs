@@ -35,6 +35,8 @@ namespace GameOfLife.Exec
 
         public bool AddImage(string imageReference, bool createOnFailure = true, bool printResult = false)
             => imageManagement.AddImage(ref images, fallbackImage, imageReference, createOnFailure, printResult);
+        public bool AddImageDirectly(Image imageToAdd, bool printResult = false)
+            => imageManagement.AddImageDirectly(ref images, imageToAdd, printResult);
         public bool RemoveImage(int index, bool printResult = false)
             => imageManagement.RemoveImage(ref images, index, printResult);
         public Image? GetImage(int index, bool printResult = false)
