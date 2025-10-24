@@ -1,15 +1,10 @@
 ﻿using GameOfLife.Exec.Structs;
 
-namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
+namespace GameOfLife.Exec.Utilities.ImageManagement.ImageData
 {
-    internal class CMYKRetrieve
+    internal static class CMYKRetrieve
     {
-        public CMYKRetrieve()
-        {
-
-        }
-
-        public CMYK[,] CMYK2D(Image image)
+        public static CMYK[,] CMYK2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             CMYK[,] cmykArray = new CMYK[image.size[0], image.size[1]];
@@ -19,7 +14,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
             return cmykArray;
         }
 
-        public float[,] Cyan2D(Image image)
+        public static float[,] Cyan2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             float[,] floatArray = new float[image.size[0], image.size[1]];
@@ -28,7 +23,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
                     floatArray[x, y] = colorArray[x, y].CMYK.C;
             return floatArray;
         }
-        public float[,] Magenta2D(Image image)
+        public static float[,] Magenta2D(Image image)
         {
             Color[,] colorArray = image.pixel;
         float[,] floatArray = new float[image.size[0], image.size[1]];
@@ -37,7 +32,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
                     floatArray[x, y] = colorArray[x, y].CMYK.M;
             return floatArray;
         }
-        public float[,] Yellow2D(Image image)
+        public static float[,] Yellow2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             float[,] floatArray = new float[image.size[0], image.size[1]];
@@ -46,7 +41,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData
                     floatArray[x, y] = colorArray[x, y].CMYK.Y;
             return floatArray;
         }
-        public float[,] Key2D(Image image)
+        public static float[,] Key2D(Image image)
         {
             Color[,] colorArray = image.pixel;
             float[,] floatArray = new float[image.size[0], image.size[1]];

@@ -1,5 +1,6 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement.ImageData;
 using GameOfLife.Exec.Structs;
+using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
 
 namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
@@ -8,7 +9,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
         readonly ImageManagementClass imageManagement = new();
         readonly RGBRetrieve rgbRetrieve = new();
         readonly HSVRetrieve hsvRetrieve = new();
-        readonly CMYKRetrieve cmykRetrieve = new();
 
         public int[] GetImageDimensions(ref List<Image> imageList, int index, bool printResult)
         {
@@ -37,14 +37,14 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             => hsvRetrieve.Volume2D(image);
 
         public CMYK[,] CMYK2D(Image image)
-            => cmykRetrieve.CMYK2D(image);
+            => CMYKRetrieve.CMYK2D(image);
         public float[,] Cyan2D(Image image)
-            => cmykRetrieve.Cyan2D(image);
+            => CMYKRetrieve.Cyan2D(image);
         public float[,] Magenta2D(Image image)
-            => cmykRetrieve.Magenta2D(image);
+            => CMYKRetrieve.Magenta2D(image);
         public float[,] Yellow2D(Image image)
-            => cmykRetrieve.Yellow2D(image);
+            => CMYKRetrieve.Yellow2D(image);
         public float[,] Key2D(Image image)
-            => cmykRetrieve.Key2D(image);
+            => CMYKRetrieve.Key2D(image);
     }
 }
