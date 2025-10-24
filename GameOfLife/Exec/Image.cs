@@ -28,17 +28,23 @@ namespace GameOfLife.Exec
         }
         public Image(Structs.Color[,] colorArray)
         {
-            int xScale = colorArray.GetLength(0);
-            int yScale = colorArray.GetLength(1);
-            Image<Rgba32> image = new(xScale, yScale);
-            for (int x = 0; x < xScale; x++)
-                for (int y = 0; y < yScale; y++)
-                {
-
-                }
-            this.image = image;
-            size = [];
+            image = ConstructImageRgba32(colorArray);
+            size = [this.image.Width, this.image.Height];
             pixel = colorArray;
+        }
+
+        private Image<Rgba32> ConstructImageRgba32(Structs.Color[,] colorArray)
+        {
+            int width = colorArray.GetLength(0);
+            int height = colorArray.GetLength(1);
+            var image = new Image<Rgba32>(width, height);
+            for (int x = 0; x < width; x++)
+                for (int y = 0; y < height; y++)
+                {
+                    Structs.Color color = colorArray[x, y];
+                    image[x, y] = new Rgba32(color.RGB.R, color.RGB.G, color.RGB.B);
+                }
+            return image;
         }
 
         public Structs.Color[,] PixelAsRGB(int[] size, Image<Rgba32> image)

@@ -24,7 +24,7 @@
         {
             int imageListLength = image.Count;
             image.Add(imageToAdd);
-            bool succeeded = imageListLength == image.Count;
+            bool succeeded = imageListLength != image.Count;
             Console.Write
             (
                 printResult

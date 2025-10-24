@@ -5,6 +5,8 @@
         private static char[] joinedThresholdChars = { '█', '▄', '▀', ' ' };
         private static string[] thresholdChars = { "██", "  " };
 
+        private static ImageManager imageManager = new();
+
         public static void VolumeAbove(ImageManager imageManager, Image image, float threshold = .5f, bool belowInstead = false)
         {
             bool[,] thresholdArray;
@@ -16,6 +18,10 @@
         }
         public static void FromBoolArray(bool[,] boolArray)
             => PrintBoolArray(boolArray);
+        public static void FromColorArray(Structs.Color[,] colorArray, float volumeThreshold = .5f)
+            => FromBoolArray(ThresholdChecks.Float2DGreater(imageManager.Volume2D(new Image(colorArray)), volumeThreshold));
+        public static void FromImage(Image imageToPrint, float volumeThreshold = .5f)
+            => FromBoolArray(ThresholdChecks.Float2DGreater(imageManager.Volume2D(imageToPrint), volumeThreshold));
 
         private static void PrintBoolArray(bool[,] boolArray)
         {

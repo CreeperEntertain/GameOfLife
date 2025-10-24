@@ -7,7 +7,8 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
     {
         public void SimulateSingleGame(Image image, int imageManagerIndex, bool addResultsToImageManager = false)
         {
-            bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManagers[imageManagerIndex].Volume2D(image), .5f);
+            ImageManager imageManager = imageManagers[imageManagerIndex];
+            bool[,] thresholdArray = ThresholdChecks.Float2DGreater(imageManager.Volume2D(image), .5f);
 
             Grid grid = new(image.size);
             grid.SetStates(thresholdArray);
@@ -20,12 +21,24 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
                 RunSim(grid, 125, 1, imageManagerIndex);
             else
                 RunSim(grid, 125, 1);
+
+            Console.Write("Press any key to render frame 16");
+            Console.ReadKey();
+            PrintFrame(imageManager, 16);
+        }
+
+        public bool PrintFrame(ImageManager imageManager, UInt32 index)
+        {
+            Image? printedImage = imageManager.GetImage((int)index);
+            if (printedImage != null)
+                PrintImage.FromImage(printedImage.Value);
+            else
+                return false;
+            return true;
         }
 
         public void RunSim(Grid grid, int simulationSteps, byte delayBetweenSteps, int? imageManagerIndex = null)
         {
-            int xScale = grid.cells.GetLength(0);
-            int yScale = grid.cells.GetLength(1);
             for (int i = 0; i < simulationSteps; i++)
             {
                 Console.SetCursorPosition(0, 0);
