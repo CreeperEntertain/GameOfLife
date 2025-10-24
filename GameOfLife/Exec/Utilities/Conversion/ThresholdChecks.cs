@@ -1,4 +1,4 @@
-﻿namespace GameOfLife.Exec.Utilities
+﻿namespace GameOfLife.Exec.Utilities.Conversion
 {
     internal static class ThresholdChecks
     {

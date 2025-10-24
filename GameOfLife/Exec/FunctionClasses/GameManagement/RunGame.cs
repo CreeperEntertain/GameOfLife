@@ -1,5 +1,7 @@
 ﻿using GameOfLife.Exec.Structs;
 using GameOfLife.Exec.Utilities;
+using GameOfLife.Exec.Utilities.Conversion;
+using GameOfLife.Exec.Utilities.IO;
 
 namespace GameOfLife.Exec.FunctionClasses.GameManagement
 {
@@ -46,7 +48,7 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
                 bool[,] gridState = grid.GetStates();
                 PrintImage.FromBoolArray(gridState);
                 if (imageManagerIndex != null)
-                    imageManagers[imageManagerIndex.Value].AddImageDirectly(new Image(ConstructColorArray.From2DFloatArray(BackConvert.BoolToFloat2D(gridState), Enums.InputChannelsFloat.V)));
+                    imageManagers[imageManagerIndex.Value].AddImageDirectly(new Image(ConstructColorArray.From2DFloatArray(BoolTo.Float2D(gridState), Enums.InputChannelsFloat.V)));
                 if (UserInput.IsKeyDown(ConsoleKey.Escape))
                 {
                     Console.WriteLine("\nSimulation cancelled.");

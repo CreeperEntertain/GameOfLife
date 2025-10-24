@@ -1,4 +1,6 @@
-﻿namespace GameOfLife.Exec.Utilities
+﻿using GameOfLife.Exec.Utilities.Conversion;
+
+namespace GameOfLife.Exec.Utilities
 {
     internal static class PrintImage
     {

@@ -1,7 +1,7 @@
 ﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace GameOfLife.Exec.Utilities
+namespace GameOfLife.Exec.Utilities.BuildArray
 {
     internal static class PixelAsRGBClass
     {

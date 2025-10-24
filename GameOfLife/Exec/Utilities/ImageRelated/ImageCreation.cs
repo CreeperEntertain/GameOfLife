@@ -1,4 +1,5 @@
-﻿using SixLabors.ImageSharp;
+﻿using GameOfLife.Exec.Utilities.IO;
+using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
 namespace GameOfLife.Exec.Utilities.ImageRelated

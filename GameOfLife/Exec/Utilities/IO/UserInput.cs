@@ -1,6 +1,6 @@
 ﻿using System.Collections.Concurrent;
 
-namespace GameOfLife.Exec.Utilities
+namespace GameOfLife.Exec.Utilities.IO
 {
     internal static class UserInput
     {
