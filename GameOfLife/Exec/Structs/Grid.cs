@@ -7,14 +7,12 @@ namespace GameOfLife.Exec.Structs
     {
         public Cell[,] cells { get; set; }
 
-        private ImageCreationClass imageCreation = new();
-
         private readonly int[] dx = [-1, 0, 1, -1, 1, -1, 0, 1];
         private readonly int[] dy = [-1, -1, -1, 0, 0, 1, 1, 1];
 
         public Grid(int[] dimensions)
         {
-            if (!imageCreation.CheckDimensions(dimensions))
+            if (!ImageCreation.CheckDimensions(dimensions))
                 throw new ArgumentException("Invalid grid dimensions.");
             cells = new Cell[dimensions[0], dimensions[1]];
         }

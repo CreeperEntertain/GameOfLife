@@ -5,12 +5,12 @@ using SixLabors.ImageSharp.PixelFormats;
 
 namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
-    internal class ImageCreationClass
+    internal static class ImageCreation
     {
-        readonly ImageManagementClass imageManagement = new();
-        readonly ImageDataClass imageData = new();
+        static readonly ImageManagementClass imageManagement = new();
+        static readonly ImageDataClass imageData = new();
 
-        public bool CheckDimensions(int[] providedScales)
+        public static bool CheckDimensions(int[] providedScales)
         {
             int upperLimit = 127;
             foreach (int index in providedScales)
@@ -21,7 +21,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
                 }
             return true;
         }
-        public Image CreateImage(int width, int height, ref List<Image> image)
+        public static Image CreateImage(int width, int height, ref List<Image> image)
         {
             if (!CheckDimensions([width, height]))
                 throw new ArgumentException($"Illegal image dimensions. ({width}x{height})");
@@ -29,7 +29,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             image.Add(addedImage);
             return addedImage;
         }
-        public bool CreateImageFromUserInput(ref List<Image> image)
+        public static bool CreateImageFromUserInput(ref List<Image> image)
         {
             int[] providedScales;
             do
@@ -43,7 +43,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 
             return true;
         }
-        public Image? CreateImageProcess(ref List<Image> imageList, bool printResult)
+        public static Image? CreateImageProcess(ref List<Image> imageList, bool printResult)
         {
             bool didCreateImage = CreateImageFromUserInput(ref imageList);
             if (didCreateImage)

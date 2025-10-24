@@ -21,18 +21,17 @@ namespace GameOfLife.Exec
                 AddImage(index, createOnFailure, printResult);
         }
 
-        readonly ImageCreationClass imageCreation = new();
         readonly ImageManagementClass imageManagement = new();
         readonly ImageDataClass imageData = new();
 
         public Image CreateImage(int width, int height)
-            => imageCreation.CreateImage(width, height, ref images);
+            => ImageCreation.CreateImage(width, height, ref images);
         public bool CheckDimensions(int[] dimensions)
-            => imageCreation.CheckDimensions(dimensions);
+            => ImageCreation.CheckDimensions(dimensions);
         public bool CreateImageFromUserInput()
-            => imageCreation.CreateImageFromUserInput(ref images);
+            => ImageCreation.CreateImageFromUserInput(ref images);
         public Image? CreateImageProcess(bool printResult = true)
-            => imageCreation.CreateImageProcess(ref images, printResult);
+            => ImageCreation.CreateImageProcess(ref images, printResult);
 
         public bool AddImage(string imageReference, bool createOnFailure = true, bool printResult = false)
             => imageManagement.AddImage(ref images, fallbackImage, imageReference, createOnFailure, printResult);
