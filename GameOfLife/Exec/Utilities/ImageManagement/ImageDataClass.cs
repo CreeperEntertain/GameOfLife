@@ -1,4 +1,5 @@
 ﻿using GameOfLife.Exec.Structs;
+using GameOfLife.Exec.Utilities.ImageManagement;
 using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
 
 namespace GameOfLife.Exec.FunctionClasses.ImageManagement
