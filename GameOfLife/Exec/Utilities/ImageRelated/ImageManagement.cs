@@ -1,4 +1,4 @@
-﻿namespace GameOfLife.Exec.Utilities.ImageManagement
+﻿namespace GameOfLife.Exec.Utilities.ImageRelated
 {
     internal static class ImageManagement
     {

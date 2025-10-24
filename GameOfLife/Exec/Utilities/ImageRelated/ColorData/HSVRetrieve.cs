@@ -1,6 +1,6 @@
 ﻿using GameOfLife.Exec.Structs;
 
-namespace GameOfLife.Exec.Utilities.ImageManagement.ImageData
+namespace GameOfLife.Exec.Utilities.ImageRelated.ColorData
 {
     internal static class HSVRetrieve
     {

@@ -1,10 +1,7 @@
-﻿using GameOfLife.Exec.Utilities;
-using GameOfLife.Exec.Utilities.ImageManagement;
-using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
-using SixLabors.ImageSharp;
+﻿using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
-namespace GameOfLife.Exec.FunctionClasses.ImageManagement
+namespace GameOfLife.Exec.Utilities.ImageRelated
 {
     internal static class ImageCreation
     {
@@ -46,7 +43,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             bool didCreateImage = CreateImageFromUserInput(ref imageList);
             if (didCreateImage)
             {
-                Image? image = Utilities.ImageManagement.ImageManagement.GetImage(ref imageList, 0, false);
+                Image? image = ImageManagement.GetImage(ref imageList, 0, false);
 
                 int[] imageDimensions = ImageData.GetImageDimensions(ref imageList, 0, printResult);
                 int width = imageDimensions[0];

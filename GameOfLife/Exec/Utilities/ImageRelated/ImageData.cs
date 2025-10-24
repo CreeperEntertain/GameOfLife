@@ -1,12 +1,13 @@
 ﻿using GameOfLife.Exec.Structs;
+using GameOfLife.Exec.Utilities.ImageRelated.ColorData;
 
-namespace GameOfLife.Exec.Utilities.ImageManagement.ImageData
+namespace GameOfLife.Exec.Utilities.ImageRelated
 {
     internal static class ImageData
     {
         public static int[] GetImageDimensions(ref List<Image> imageList, int index, bool printResult)
         {
-            Image? image = Utilities.ImageManagement.ImageManagement.GetImage(ref imageList, index, printResult);
+            Image? image = ImageManagement.GetImage(ref imageList, index, printResult);
             if (image != null)
                 return [image.Value.size[0], image.Value.size[1]];
             return [0, 0];
