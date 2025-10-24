@@ -6,11 +6,9 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
     internal static class ImageData
     {
-        static readonly ImageManagementClass imageManagement = new();
-
         public static int[] GetImageDimensions(ref List<Image> imageList, int index, bool printResult)
         {
-            Image? image = imageManagement.GetImage(ref imageList, index, printResult);
+            Image? image = ImageManagementClass.GetImage(ref imageList, index, printResult);
             if (image != null)
                 return [image.Value.size[0], image.Value.size[1]];
             return [0, 0];

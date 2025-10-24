@@ -21,8 +21,6 @@ namespace GameOfLife.Exec
                 AddImage(index, createOnFailure, printResult);
         }
 
-        readonly ImageManagementClass imageManagement = new();
-
         public Image CreateImage(int width, int height)
             => ImageCreation.CreateImage(width, height, ref images);
         public bool CheckDimensions(int[] dimensions)
@@ -33,13 +31,13 @@ namespace GameOfLife.Exec
             => ImageCreation.CreateImageProcess(ref images, printResult);
 
         public bool AddImage(string imageReference, bool createOnFailure = true, bool printResult = false)
-            => imageManagement.AddImage(ref images, fallbackImage, imageReference, createOnFailure, printResult);
+            => ImageManagementClass.AddImage(ref images, fallbackImage, imageReference, createOnFailure, printResult);
         public bool AddImageDirectly(Image imageToAdd, bool printResult = false)
-            => imageManagement.AddImageDirectly(ref images, imageToAdd, printResult);
+            => ImageManagementClass.AddImageDirectly(ref images, imageToAdd, printResult);
         public bool RemoveImage(int index, bool printResult = false)
-            => imageManagement.RemoveImage(ref images, index, printResult);
+            => ImageManagementClass.RemoveImage(ref images, index, printResult);
         public Image? GetImage(int index, bool printResult = false)
-            => imageManagement.GetImage(ref images, index, printResult);
+            => ImageManagementClass.GetImage(ref images, index, printResult);
 
         public int[] GetImageDimensions(int index, bool printResult = false)
             => ImageData.GetImageDimensions(ref images, index, printResult);

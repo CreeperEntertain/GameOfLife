@@ -1,8 +1,8 @@
 ﻿namespace GameOfLife.Exec.Utilities.ImageManagement
 {
-    internal class ImageManagementClass
+    internal static class ImageManagementClass
     {
-        public bool AddImage(ref List<Image> image, Image fallbackImage, string imageReference, bool createOnFailure = true, bool printResult = false)
+        public static bool AddImage(ref List<Image> image, Image fallbackImage, string imageReference, bool createOnFailure = true, bool printResult = false)
         {
             imageReference = imageReference.Replace("\"", "");
             bool isSuccessful = File.Exists(imageReference);
@@ -20,7 +20,7 @@
             Console.Write(printResult ? print + "\n" : print);
             return isSuccessful;
         }
-        public bool AddImageDirectly(ref List<Image> image, Image imageToAdd, bool printResult = false)
+        public static bool AddImageDirectly(ref List<Image> image, Image imageToAdd, bool printResult = false)
         {
             int imageListLength = image.Count;
             image.Add(imageToAdd);
@@ -36,14 +36,14 @@
             return succeeded ? true : false;
         }
 
-        public bool RemoveImage(ref List<Image> image, int index, bool printResult = false)
+        public static bool RemoveImage(ref List<Image> image, int index, bool printResult = false)
         {
             bool isSuccessful = image.Remove(image[index]);
             if (printResult)
                 Console.WriteLine(isSuccessful ? $"Successfully removed image {index}." : $"Failed to remove image {index}.");
             return isSuccessful;
         }
-        public Image? GetImage(ref List<Image> image, int index, bool printResult = false)
+        public static Image? GetImage(ref List<Image> image, int index, bool printResult = false)
         {
             bool isSuccessful = image.Count > index;
             if (isSuccessful)

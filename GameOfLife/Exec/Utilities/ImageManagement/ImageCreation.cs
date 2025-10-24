@@ -7,8 +7,6 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
 {
     internal static class ImageCreation
     {
-        static readonly ImageManagementClass imageManagement = new();
-
         public static bool CheckDimensions(int[] providedScales)
         {
             int upperLimit = 127;
@@ -47,7 +45,7 @@ namespace GameOfLife.Exec.FunctionClasses.ImageManagement
             bool didCreateImage = CreateImageFromUserInput(ref imageList);
             if (didCreateImage)
             {
-                Image? image = imageManagement.GetImage(ref imageList, 0, false);
+                Image? image = ImageManagementClass.GetImage(ref imageList, 0, false);
 
                 int[] imageDimensions = ImageData.GetImageDimensions(ref imageList, 0, printResult);
                 int width = imageDimensions[0];
