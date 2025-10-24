@@ -1,5 +1,6 @@
 ﻿using GameOfLife.Exec.Utilities;
 using GameOfLife.Exec.Utilities.ImageManagement;
+using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
