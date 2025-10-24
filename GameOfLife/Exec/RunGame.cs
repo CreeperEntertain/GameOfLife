@@ -3,7 +3,7 @@ using GameOfLife.Exec.Utilities;
 using GameOfLife.Exec.Utilities.Conversion;
 using GameOfLife.Exec.Utilities.IO;
 
-namespace GameOfLife.Exec.Utilities.GameManagement
+namespace GameOfLife.Exec
 {
     internal class RunGame(List<ImageManager> imageManagers)
     {
