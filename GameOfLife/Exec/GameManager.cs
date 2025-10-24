@@ -1,4 +1,4 @@
-﻿using GameOfLife.Exec.FunctionClasses.GameManagement;
+﻿using GameOfLife.Exec.Utilities.GameManagement;
 
 namespace GameOfLife.Exec
 {

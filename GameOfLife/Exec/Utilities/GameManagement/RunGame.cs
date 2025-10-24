@@ -3,7 +3,7 @@ using GameOfLife.Exec.Utilities;
 using GameOfLife.Exec.Utilities.Conversion;
 using GameOfLife.Exec.Utilities.IO;
 
-namespace GameOfLife.Exec.FunctionClasses.GameManagement
+namespace GameOfLife.Exec.Utilities.GameManagement
 {
     internal class RunGame(List<ImageManager> imageManagers)
     {
@@ -29,7 +29,7 @@ namespace GameOfLife.Exec.FunctionClasses.GameManagement
             PrintFrame(imageManager, 16);
         }
 
-        public bool PrintFrame(ImageManager imageManager, UInt32 index)
+        public bool PrintFrame(ImageManager imageManager, uint index)
         {
             Image? printedImage = imageManager.GetImage((int)index);
             if (printedImage != null)

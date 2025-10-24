@@ -1,4 +1,4 @@
-﻿namespace GameOfLife.Exec.FunctionClasses.GameManagement
+﻿namespace GameOfLife.Exec.Utilities.GameManagement
 {
     internal class GameImages
     {
