@@ -1,6 +1,6 @@
 ﻿namespace GameOfLife.Exec.Utilities.ImageManagement
 {
-    internal static class ImageManagementClass
+    internal static class ImageManagement
     {
         public static bool AddImage(ref List<Image> image, Image fallbackImage, string imageReference, bool createOnFailure = true, bool printResult = false)
         {

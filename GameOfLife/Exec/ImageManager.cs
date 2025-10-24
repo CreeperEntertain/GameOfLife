@@ -1,6 +1,7 @@
 ﻿using GameOfLife.Exec.FunctionClasses.ImageManagement;
 using GameOfLife.Exec.Structs;
 using GameOfLife.Exec.Utilities.ImageManagement;
+using GameOfLife.Exec.Utilities.ImageManagement.ImageData;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -31,13 +32,13 @@ namespace GameOfLife.Exec
             => ImageCreation.CreateImageProcess(ref images, printResult);
 
         public bool AddImage(string imageReference, bool createOnFailure = true, bool printResult = false)
-            => ImageManagementClass.AddImage(ref images, fallbackImage, imageReference, createOnFailure, printResult);
+            => ImageManagement.AddImage(ref images, fallbackImage, imageReference, createOnFailure, printResult);
         public bool AddImageDirectly(Image imageToAdd, bool printResult = false)
-            => ImageManagementClass.AddImageDirectly(ref images, imageToAdd, printResult);
+            => ImageManagement.AddImageDirectly(ref images, imageToAdd, printResult);
         public bool RemoveImage(int index, bool printResult = false)
-            => ImageManagementClass.RemoveImage(ref images, index, printResult);
+            => ImageManagement.RemoveImage(ref images, index, printResult);
         public Image? GetImage(int index, bool printResult = false)
-            => ImageManagementClass.GetImage(ref images, index, printResult);
+            => ImageManagement.GetImage(ref images, index, printResult);
 
         public int[] GetImageDimensions(int index, bool printResult = false)
             => ImageData.GetImageDimensions(ref images, index, printResult);
