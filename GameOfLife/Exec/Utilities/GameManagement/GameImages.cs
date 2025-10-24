@@ -1,8 +1,8 @@
 ﻿namespace GameOfLife.Exec.Utilities.GameManagement
 {
-    internal class GameImages
+    internal static class GameImages
     {
-        public Image? ImageAdding(ImageManager imageManager, bool cancellable = true)
+        public static Image? ImageAdding(ImageManager imageManager, bool cancellable = true)
         {
             Image? image;
             bool imageExists;

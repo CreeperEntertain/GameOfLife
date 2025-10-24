@@ -6,7 +6,6 @@ namespace GameOfLife.Exec
     {
         public List<ImageManager> imageManagers = [];
         private readonly RunGame game;
-        private readonly GameImages gameImages = new();
 
         public GameManager()
         {
@@ -16,7 +15,7 @@ namespace GameOfLife.Exec
 
         public void Init()
         {
-            Image? image = gameImages.ImageAdding(imageManagers[0], false);
+            Image? image = GameImages.ImageAdding(imageManagers[0], false);
             if (image != null)
                 game.SimulateSingleGame(image.Value, 0, true);
         }
