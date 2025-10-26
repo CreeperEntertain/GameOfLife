@@ -56,6 +56,7 @@
                 Console.WriteLine($"Image manager renamed to [{name}].");
             return true;
         }
+
         public static bool RenameImageManagerFromUserInput(List<ImageManager> imageManagers, uint index, bool printResult = false)
         {
             string name = Console.ReadLine() ?? "";
