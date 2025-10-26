@@ -24,7 +24,6 @@ namespace GameOfLife.Exec.Utilities.IO
             return found;
         }
 
-
         public static int[] ProvideScales()
         {
             Console.WriteLine("Type 'cancel' to cancel.");

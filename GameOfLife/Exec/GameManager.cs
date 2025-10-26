@@ -1,21 +1,24 @@
 ﻿using GameOfLife.Exec.Utilities.GameManagement;
+using GameOfLife.Exec.Utilities.IO;
 
 namespace GameOfLife.Exec
 {
-    internal class GameManager
+    internal static class GameManager
     {
-        public List<ImageManager> imageManagers = [];
-        private readonly RunGame game;
+        public static List<ImageManager> imageManagers = [];
+        private static readonly RunGame game;
 
-        public GameManager()
+        static GameManager()
         {
-            imageManagers.Add(new());
+            imageManagers.Add(new(""));
             game = new(imageManagers);
         }
 
-        public void Init()
+        public static void Init()
         {
-            Image? image = GameImages.ImageAdding(imageManagers[0], false);
+            TextOut.WriteLine("Welcome!", ConsoleColor.Cyan);
+
+            Image? image = GameImages.ImageAdding(imageManagers[0]);
             if (image != null)
                 game.SimulateSingleGame(image.Value, 0, true);
         }

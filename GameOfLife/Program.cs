@@ -1,5 +1,6 @@
 ﻿using GameOfLife.Exec;
-using GameOfLife.Exec.Utilities;
+using GameOfLife.Exec.Utilities.IO;
+using GameOfLife.Exec.Utilities.WindowManagement;
 
 namespace GameOfLife
 {
@@ -13,8 +14,11 @@ namespace GameOfLife
     {
         public void Run()
         {
-            GameManager game = new();
-            game.Init();
+            WindowManager.Fullscreen();
+            UserInterference.Disable();
+            EventBlocker.BlockEvent(EventBlocker.CtrlEvent.CTRL_C);
+
+            GameManager.Init();
         }
     }
 }

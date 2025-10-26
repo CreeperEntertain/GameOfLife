@@ -9,13 +9,19 @@ namespace GameOfLife.Exec
     {
         public List<Image> images = [];
         public readonly int ID = new Random().Next();
+        public string name;
         private readonly Image fallbackImage = new(new Image<Rgba32>(16, 16));
 
-        public ImageManager() { }
-        public ImageManager(string imageReference, bool createOnFailure = true, bool printResult = false)
-            => AddImage(imageReference, createOnFailure, printResult);
-        public ImageManager(string[] imageReference, bool createOnFailure = true, bool printResult = false)
+        public ImageManager(string name)
+            => this.name = name;
+        public ImageManager(string name, string imageReference, bool createOnFailure = true, bool printResult = false)
         {
+            this.name = name;
+            AddImage(imageReference, createOnFailure, printResult);
+        }
+        public ImageManager(string name, string[] imageReference, bool createOnFailure = true, bool printResult = false)
+        {
+            this.name = name;
             foreach (string index in imageReference)
                 AddImage(index, createOnFailure, printResult);
         }

@@ -7,7 +7,7 @@ namespace GameOfLife.Exec.Utilities
         private static char[] joinedThresholdChars = { '█', '▄', '▀', ' ' };
         private static string[] thresholdChars = { "██", "  " };
 
-        private static ImageManager imageManager = new();
+        private static ImageManager imageManager = new("");
 
         public static void VolumeAbove(ImageManager imageManager, Image image, float threshold = .5f, bool belowInstead = false)
         {
@@ -24,6 +24,15 @@ namespace GameOfLife.Exec.Utilities
             => FromBoolArray(ThresholdChecks.Float2DGreater(imageManager.Volume2D(new Image(colorArray)), volumeThreshold));
         public static void FromImage(Image imageToPrint, float volumeThreshold = .5f)
             => FromBoolArray(ThresholdChecks.Float2DGreater(imageManager.Volume2D(imageToPrint), volumeThreshold));
+        public static bool FromFrame(ImageManager imageManager, uint index)
+        {
+            Image? printedImage = imageManager.GetImage((int)index);
+            if (printedImage != null)
+                PrintImage.FromImage(printedImage.Value);
+            else
+                return false;
+            return true;
+        }
 
         private static void PrintBoolArray(bool[,] boolArray)
         {
