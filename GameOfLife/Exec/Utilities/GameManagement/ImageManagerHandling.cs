@@ -7,7 +7,6 @@
 
         public static bool CreateFromUserInput(List<ImageManager> imageManagers, bool cancellable = true)
         {
-            Console.Clear();
             string providedName = "";
             bool loop = true;
             while (loop)
@@ -26,13 +25,11 @@
                 }
                 if (providedName.Length > maxNameLength)
                 {
-                    Console.Clear();
                     Console.WriteLine("Provided name is too long.");
                     continue;
                 }
                 if (providedName.Length == 0)
                 {
-                    Console.Clear();
                     Console.WriteLine("Provided name cannot be empty.");
                     continue;
                 }

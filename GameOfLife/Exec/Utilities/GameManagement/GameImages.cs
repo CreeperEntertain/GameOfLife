@@ -14,10 +14,7 @@
                     return null;
                 imageExists = imageManager.AddImage(providedPath);
                 if (!imageExists)
-                {
-                    Console.Clear();
                     Console.WriteLine("Image does not exist, please provide one.");
-                }
             } while (!imageExists);
             image = imageManager.GetImage(0);
 

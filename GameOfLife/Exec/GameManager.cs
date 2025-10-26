@@ -12,6 +12,7 @@ namespace GameOfLife.Exec
 
         public static void Init()
         {
+            Console.WriteLine("Greetings, user!\n");
             game.CreateFromUserInput(false);
             game.ListImageManagers();
 
