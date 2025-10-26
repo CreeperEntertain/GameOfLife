@@ -11,8 +11,14 @@ namespace GameOfLife.Exec
         public void RunSim(Grid grid, int simulationSteps, byte delayBetweenSteps, int? imageManagerIndex = null)
             => Simulate.Run(grid, imageManagers, simulationSteps, delayBetweenSteps, imageManagerIndex);
 
+        public void CreateFromUserInput(bool cancellable = true)
+            => ImageManagerHandling.CreateFromUserInput(imageManagers, cancellable);
         public bool RenameImageManager(uint index, string name, bool printResult = false)
             => ImageManagerHandling.RenameImageManager(imageManagers, index, name, printResult);
+        public bool RenameImageManagerFromUserInput(uint index, bool printResult = false)
+            => ImageManagerHandling.RenameImageManagerFromUserInput(imageManagers, index, printResult);
+        public void ListImageManagers()
+            => ImageManagerHandling.List(imageManagers);
 
         public bool PrintFrame(ImageManager imageManager, uint index)
             => PrintImage.FromFrame(imageManager, index);

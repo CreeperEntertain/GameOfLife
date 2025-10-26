@@ -2,26 +2,80 @@
 {
     internal static class ImageManagerHandling
     {
-        public static bool RenameImageManager(List<ImageManager> imageManagers, uint index, string name, bool printResult = false)
+        private readonly static int listPadding = 6;
+        private readonly static int maxNameLength = 127;
+
+        public static bool CreateFromUserInput(List<ImageManager> imageManagers, bool cancellable = true)
         {
-            bool success = imageManagers.All(m => m.name != name);
-            if (success)
-                if (index > imageManagers.Count)
+            Console.Clear();
+            string providedName = "";
+            bool loop = true;
+            while (loop)
+            {
+                Console.Write
+                (
+                    cancellable
+                    ? "Provide a name and hit enter.\nAlternatively, type 'cancel' to cancel: "
+                    : "Provide a name and hit enter: "
+                );
+                providedName = Console.ReadLine() ?? "";
+                if (cancellable && providedName.ToLower() == "cancel")
                 {
-                    if (printResult)
-                        Console.WriteLine("Image manager does not exist.");
+                    Console.WriteLine("Image manager creation cancelled.");
                     return false;
                 }
-                else
+                if (providedName.Length > maxNameLength)
                 {
-                    imageManagers[(int)index].name = name;
-                    if (printResult)
-                        Console.WriteLine($"Image manager renamed to [{name}].");
-                    return true;
+                    Console.Clear();
+                    Console.WriteLine("Provided name is too long.");
+                    continue;
                 }
-            else if (printResult)
-                Console.WriteLine("Image manager with that name already exists.");
-            return success;
+                if (providedName.Length == 0)
+                {
+                    Console.Clear();
+                    Console.WriteLine("Provided name cannot be empty.");
+                    continue;
+                }
+                loop = false;
+            }
+            imageManagers.Add(new(providedName));
+            Console.WriteLine($"Added image manager [{providedName}].");
+            return true;
+        }
+
+        public static bool RenameImageManager(List<ImageManager> imageManagers, uint index, string name, bool printResult = false)
+        {
+            if (index > imageManagers.Count)
+            {
+                if (printResult)
+                    Console.WriteLine("Image manager does not exist.");
+                return false;
+            }
+            imageManagers[(int)index].name = name;
+            if (printResult)
+                Console.WriteLine($"Image manager renamed to [{name}].");
+            return true;
+        }
+        public static bool RenameImageManagerFromUserInput(List<ImageManager> imageManagers, uint index, bool printResult = false)
+        {
+            string name = Console.ReadLine() ?? "";
+            if (name.Length > maxNameLength)
+            {
+                if (printResult)
+                    Console.WriteLine("Provided name is too long.");
+                return false;
+            }
+            return RenameImageManager(imageManagers, index, name, printResult);
+        }
+
+        public static void List(List<ImageManager> imageManagers)
+        {
+            int ID = 1;
+            foreach (ImageManager manager in imageManagers)
+            {
+                Console.WriteLine($"{$"{ID}.".PadRight(listPadding)}{manager.name}");
+                ID++;
+            }
         }
     }
 }
