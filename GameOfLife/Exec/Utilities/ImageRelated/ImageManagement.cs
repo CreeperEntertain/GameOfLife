@@ -1,4 +1,6 @@
-﻿namespace GameOfLife.Exec.Utilities.ImageRelated
+﻿using GameOfLife.Exec.Utilities.IO;
+
+namespace GameOfLife.Exec.Utilities.ImageRelated
 {
     internal static class ImageManagement
     {
@@ -17,7 +19,7 @@
                 if (printResult)
                     print += " Creating empty 16x16 image instead.";
             }
-            Console.Write(printResult ? print + "\n" : print);
+            TextOut.Write(printResult ? print + "\n" : print, ConsoleColor.Yellow);
             return isSuccessful;
         }
         public static bool AddImageDirectly(ref List<Image> image, Image imageToAdd, bool printResult = false)
@@ -25,22 +27,30 @@
             int imageListLength = image.Count;
             image.Add(imageToAdd);
             bool succeeded = imageListLength != image.Count;
-            Console.Write
-            (
-                printResult
-                ? succeeded
-                    ? "Failed to add image.\n"
-                    : "Successfully added image.\n"
-                : ""
-            );
-            return succeeded ? true : false;
+            if (printResult)
+                if (succeeded)
+                    TextOut.WriteLine("Successfully added image.", ConsoleColor.Green);
+                else
+                    TextOut.WriteLine("Failed to add image.", ConsoleColor.Red);
+            return succeeded;
         }
 
         public static bool RemoveImage(ref List<Image> image, int index, bool printResult = false)
         {
             bool isSuccessful = image.Remove(image[index]);
             if (printResult)
-                Console.WriteLine(isSuccessful ? $"Successfully removed image {index}." : $"Failed to remove image {index}.");
+                if (isSuccessful)
+                {
+                    TextOut.Write("Successfully removed image [", ConsoleColor.Green);
+                    TextOut.Write(index, ConsoleColor.Yellow);
+                    TextOut.WriteLine("].", ConsoleColor.Green);
+                }
+                else
+                {
+                    TextOut.Write("Failed to remove image [", ConsoleColor.Red);
+                    TextOut.Write(index, ConsoleColor.Yellow);
+                    TextOut.WriteLine("].", ConsoleColor.Red);
+                }
             return isSuccessful;
         }
         public static Image? GetImage(ref List<Image> image, int index, bool printResult = false)
@@ -49,7 +59,7 @@
             if (isSuccessful)
                 return image[index];
             if (printResult)
-                Console.WriteLine("Image does not exist.");
+                TextOut.WriteLine("Image does not exist.", ConsoleColor.Red);
             return null;
         }
     }

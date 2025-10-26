@@ -26,13 +26,13 @@ namespace GameOfLife.Exec.Utilities.IO
 
         public static int[] ProvideScales()
         {
-            Console.WriteLine("Type 'cancel' to cancel.");
-            Console.Write("WIDTH:");
+            TextOut.WriteLine("Type 'cancel' to cancel.", ConsoleColor.Blue);
+            TextOut.Write("WIDTH:", ConsoleColor.Blue);
             string width = Console.ReadLine() ?? "";
             if (width.ToLower() == "cancel")
                 return [];
-            Console.WriteLine("Type 'cancel' to cancel.");
-            Console.Write("HEIGTH:");
+            TextOut.WriteLine("Type 'cancel' to cancel.", ConsoleColor.Blue);
+            TextOut.Write("HEIGTH:", ConsoleColor.Blue);
             string height = Console.ReadLine() ?? "";
             if (height.ToLower() == "cancel")
                 return [];

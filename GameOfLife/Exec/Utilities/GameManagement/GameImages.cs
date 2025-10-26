@@ -1,4 +1,6 @@
-﻿namespace GameOfLife.Exec.Utilities.GameManagement
+﻿using GameOfLife.Exec.Utilities.IO;
+
+namespace GameOfLife.Exec.Utilities.GameManagement
 {
     internal static class GameImages
     {
@@ -14,7 +16,7 @@
                     return null;
                 imageExists = imageManager.AddImage(providedPath);
                 if (!imageExists)
-                    Console.WriteLine("Image does not exist, please provide one.");
+                    TextOut.WriteLine("Image does not exist, please provide one.", ConsoleColor.Red);
             } while (!imageExists);
             image = imageManager.GetImage(0);
 
@@ -24,7 +26,7 @@
         }
 
         private static void InstructionText(bool cancellable)
-            => Console.Write(InstructionString(cancellable));
+            => TextOut.Write(InstructionString(cancellable), ConsoleColor.Blue);
         private static string InstructionString(bool cancellable)
             => cancellable
             ? "Drag and drop in an image, then hit enter.\nAlternatively, type 'cancel' to cancel: "

@@ -2,7 +2,7 @@
 {
     internal static class TextOut
     {
-        public static void WriteLine(object input, ConsoleColor textColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
+        public static void Write(object input, ConsoleColor textColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
         {
             var originalForeground = Console.ForegroundColor;
             var originalBackground = Console.BackgroundColor;
@@ -10,10 +10,12 @@
             Console.ForegroundColor = textColor;
             Console.BackgroundColor = backgroundColor;
 
-            Console.WriteLine(input);
+            Console.Write(input);
 
             Console.ForegroundColor = originalForeground;
             Console.BackgroundColor = originalBackground;
         }
+        public static void WriteLine(object input, ConsoleColor textColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
+            => Write($"{input}\n", textColor, backgroundColor);
     }
 }

@@ -22,10 +22,6 @@ namespace GameOfLife.Exec.Utilities.GameManagement
                 Run(grid, imageManagers, 125, 1, imageManagerIndex);
             else
                 Run(grid, imageManagers, 125, 1);
-
-            Console.Write("Press any key to render frame 16");
-            Console.ReadKey();
-            PrintImage.FromFrame(imageManager, 16);
         }
 
         public static void Run(Grid grid, List<ImageManager> imageManagers, int simulationSteps, byte delayBetweenSteps, int? imageManagerIndex = null)
@@ -40,13 +36,13 @@ namespace GameOfLife.Exec.Utilities.GameManagement
                     imageManagers[imageManagerIndex.Value].AddImageDirectly(new Image(ConstructColorArray.From2DFloatArray(BoolTo.Float2D(gridState), Enums.InputChannelsFloat.V)));
                 if (UserInput.IsKeyDown(ConsoleKey.Escape))
                 {
-                    Console.WriteLine("\nSimulation cancelled.");
+                    TextOut.WriteLine("\nSimulation cancelled.", ConsoleColor.Red);
                     return;
                 }
                 Thread.Sleep(delayBetweenSteps);
             }
             Console.CursorVisible = true;
-            Console.WriteLine("Simulation done.");
+            TextOut.WriteLine("Simulation done.", ConsoleColor.Green);
         }
     }
 }

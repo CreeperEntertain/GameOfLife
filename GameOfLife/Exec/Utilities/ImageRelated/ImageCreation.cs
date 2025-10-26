@@ -12,7 +12,7 @@ namespace GameOfLife.Exec.Utilities.ImageRelated
             foreach (int index in providedScales)
                 if (index < 1 || index > upperLimit)
                 {
-                    Console.WriteLine("Image too large, too small, or no dimensions provided.");
+                    TextOut.WriteLine("Image too large, too small, or no dimensions provided.", ConsoleColor.Red);
                     return false;
                 }
             return true;
@@ -51,11 +51,11 @@ namespace GameOfLife.Exec.Utilities.ImageRelated
                 int height = imageDimensions[1];
 
                 if (printResult)
-                    Console.WriteLine($"The new image is {width}x{height} pixels large.");
+                    TextOut.WriteLine($"The new image is {width}x{height} pixels large.", ConsoleColor.Red);
                 return image;
             }
             else if (printResult)
-                Console.WriteLine("No image was created.");
+                TextOut.WriteLine("No image was created.", ConsoleColor.Red);
             return null;
         }
     }

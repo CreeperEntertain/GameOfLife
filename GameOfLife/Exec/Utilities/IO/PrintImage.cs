@@ -4,10 +4,10 @@ namespace GameOfLife.Exec.Utilities
 {
     internal static class PrintImage
     {
-        private static char[] joinedThresholdChars = { '█', '▄', '▀', ' ' };
-        private static string[] thresholdChars = { "██", "  " };
+        private static readonly char[] joinedThresholdChars = ['█', '▄', '▀', ' '];
+        private static readonly string[] thresholdChars = ["██", "  "];
 
-        private static ImageManager imageManager = new("");
+        private readonly static ImageManager imageManager = new("");
 
         public static void VolumeAbove(ImageManager imageManager, Image image, float threshold = .5f, bool belowInstead = false)
         {
@@ -28,7 +28,7 @@ namespace GameOfLife.Exec.Utilities
         {
             Image? printedImage = imageManager.GetImage((int)index);
             if (printedImage != null)
-                PrintImage.FromImage(printedImage.Value);
+                FromImage(printedImage.Value);
             else
                 return false;
             return true;
@@ -64,10 +64,14 @@ namespace GameOfLife.Exec.Utilities
         private static void PrintJoinedThresholdChar((bool, bool) verticalBoolean)
         {
             var (top, bottom) = verticalBoolean;
-            if (top && bottom) Console.Write(joinedThresholdChars[0]);
-            else if (!top && bottom) Console.Write(joinedThresholdChars[1]);
-            else if (top && !bottom) Console.Write(joinedThresholdChars[2]);
-            else Console.Write(joinedThresholdChars[3]);
+            if (top && bottom)
+                Console.Write(joinedThresholdChars[0]);
+            else if (!top && bottom)
+                Console.Write(joinedThresholdChars[1]);
+            else if (top && !bottom)
+                Console.Write(joinedThresholdChars[2]);
+            else
+                Console.Write(joinedThresholdChars[3]);
         }
     }
 }
