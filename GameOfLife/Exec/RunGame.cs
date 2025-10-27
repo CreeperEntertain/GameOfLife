@@ -24,7 +24,7 @@ namespace GameOfLife.Exec
         public bool PrintFrame(ImageManager imageManager, uint index)
             => PrintImage.FromFrame(imageManager, index);
 
-        public void ReadCommand()
-            => UserInput.ReadCommand(this);
+        public void ReadCommandInput()
+            => UserInput.ReadCommandInput(this);
     }
 }

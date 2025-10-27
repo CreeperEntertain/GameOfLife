@@ -4,7 +4,7 @@ namespace GameOfLife.Exec.Utilities.IO.Commands
 {
     internal static class ClearHistoryCommand
     {
-        public static void Exec(string userInput)
+        public static void Exec()
         {
             ClearHistory();
         }

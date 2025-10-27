@@ -25,8 +25,8 @@ namespace GameOfLife.Exec.Utilities.IO
             return found;
         }
 
-        public static void ReadCommand(RunGame game)
-            => CommandInput.ReadCommand(game);
+        public static void ReadCommandInput(RunGame game)
+            => CommandInput.ReadCommandInput(game);
 
         public static int[] ProvideScales()
         {

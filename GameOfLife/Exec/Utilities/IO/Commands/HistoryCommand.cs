@@ -1,12 +1,14 @@
-﻿namespace GameOfLife.Exec.Utilities.IO.Commands
+﻿using GameOfLife.Exec.DataProviders;
+
+namespace GameOfLife.Exec.Utilities.IO.Commands
 {
     internal static class HistoryCommand
     {
         private static readonly int indexPadding = 6;
 
-        public static void Exec(string userInput, List<string> inputHistory)
+        public static void Exec()
         {
-            PrintHistory(inputHistory);
+            PrintHistory(CommandDictionary.InputHistory);
         }
 
         private static void PrintHistory(List<string> inputHistory)

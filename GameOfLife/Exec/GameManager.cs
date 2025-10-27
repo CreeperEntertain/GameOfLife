@@ -1,6 +1,4 @@
-﻿using GameOfLife.Exec.Utilities;
-using GameOfLife.Exec.Utilities.GameManagement;
-using GameOfLife.Exec.Utilities.IO;
+﻿using GameOfLife.Exec.Utilities.IO;
 
 namespace GameOfLife.Exec
 {
@@ -16,19 +14,7 @@ namespace GameOfLife.Exec
         {
             TextOut.WriteLine("Greetings, user!\n", ConsoleColor.Green);
             game.CreateFromUserInput(false);
-            game.ReadCommand();
-
-            /*
-            game.ListImageManagers();
-
-            Image? image = GameImages.ImageAdding(imageManagers[0]);
-            if (image != null)
-                game.SimulateSingleGame(image.Value, 0, true);
-
-            TextOut.Write("Press any key to render frame 16", ConsoleColor.Blue);
-            Console.ReadKey();
-            PrintImage.FromFrame(imageManagers[0], 16);
-            */
+            game.ReadCommandInput();
         }
     }
 }

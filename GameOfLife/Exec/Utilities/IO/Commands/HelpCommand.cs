@@ -1,12 +1,13 @@
-﻿using GameOfLife.Exec.Utilities.IO.CommandHandling;
+﻿using GameOfLife.Exec.DataProviders;
+using GameOfLife.Exec.Utilities.IO.CommandHandling;
 
 namespace GameOfLife.Exec.Utilities.IO.Commands
 {
     internal static class HelpCommand
     {
-        public static void Exec(Dictionary<string, (Func<RunGame, CommandBase>, string)> commands, string userInput)
+        public static void Exec()
         {
-            Help(commands);
+            Help(CommandDictionary.commands);
         }
 
         private static void Help(Dictionary<string, (Func<RunGame, CommandBase>, string)> commands)

@@ -2,9 +2,9 @@
 {
     internal static class ListCommand
     {
-        public static void Exec(RunGame game, string userInput)
+        public static void Exec(RunGame game)
         {
-
+            
         }
     }
 }

@@ -23,7 +23,7 @@ namespace GameOfLife.Exec.Utilities.IO.CommandHandling
                 TextOut.WriteLine($"] not implemented. Consider doing so, dumbass!", ConsoleColor.Red);
                 return "";
             }
-            using StreamReader reader = new StreamReader(stream);
+            using StreamReader reader = new(stream);
             return reader.ReadToEnd();
         }
     }

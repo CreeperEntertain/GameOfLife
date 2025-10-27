@@ -10,7 +10,7 @@ namespace GameOfLife.Exec.Utilities.IO.CommandHandling
         static CommandInput()
             => UserPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "WHAT THE FUCK?!";
 
-        public static void ReadCommand(RunGame game)
+        public static void ReadCommandInput(RunGame game)
         {
             bool loop = true;
             while (loop)
