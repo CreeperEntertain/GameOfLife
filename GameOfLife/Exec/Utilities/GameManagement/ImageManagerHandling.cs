@@ -78,6 +78,7 @@ namespace GameOfLife.Exec.Utilities.GameManagement
         public static void List(List<ImageManager> imageManagers)
         {
             int ID = 1;
+            TextOut.WriteLine("Here's the list of image managers:", ConsoleColor.Blue);
             foreach (ImageManager manager in imageManagers)
             {
                 TextOut.Write($"{$"{ID}.".PadRight(listPadding)}", ConsoleColor.Blue);

@@ -1,4 +1,4 @@
-﻿namespace GameOfLife.Exec.Utilities.IO
+﻿namespace GameOfLife.Exec.Utilities.IO.CommandHandling
 {
     internal abstract class CommandBase
     {
