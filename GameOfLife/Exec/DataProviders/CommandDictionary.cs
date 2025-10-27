@@ -1,5 +1,4 @@
-﻿using GameOfLife.Exec.Utilities.IO;
-using GameOfLife.Exec.Utilities.IO.CommandHandling;
+﻿using GameOfLife.Exec.Utilities.IO.CommandHandling;
 using GameOfLife.Exec.Utilities.IO.Commands;
 using System.Reflection;
 
@@ -8,49 +7,30 @@ namespace GameOfLife.Exec.DataProviders
     internal static class CommandDictionary
     {
         public static string UserInput { get; set; }
-        static CommandDictionary()
-            => UserInput = "";
-
+        public static List<string> InputHistory { get; set; }
         public static readonly Dictionary<string, (Func<RunGame, CommandBase>, string)> commands = new(StringComparer.OrdinalIgnoreCase)
         {
             ["help"] = (game => new ActionCommand(_ => Help(UserInput ?? "")), ReadFile("help")),
-            ["?"] = (game => new ActionCommand(_ => Help(UserInput ?? "")), ReadFile("help")),
+            ["helpfor"] = (game => new ActionCommand(_ => HelpFor(UserInput ?? "")), ReadFile("helpfor")),
             ["exit"] = (game => new ActionCommand(_ => ExitCommand.Exec()), ReadFile("exit")),
             ["clear"] = (game => new ActionCommand(_ => ClearCommand.Exec()), ReadFile("clear")),
-            ["list"] = (game => new ActionCommand(_ => ListCommand.Exec(game, UserInput ?? "")), ReadFile("list")),
-            ["example"] = (game => new ActionCommand
-            (
-                args => (
-                    args.Length >= 2
-                    && args[0] is string name
-                    && args[1] is int count
-                        ? (Action)(() => CommandInput.Example(name, count))
-                        : (() => ErrorPrint("example"))
-                )()
-            ), ReadFile("example"))
+            ["history"] = (game => new ActionCommand(_ => HistoryCommand.Exec(UserInput ?? "", InputHistory ?? [])), ReadFile("history")),
+            ["clearhistory"] = (game => new ActionCommand(_ => ClearHistoryCommand.Exec(UserInput ?? "")), ReadFile("clearhistory")),
+            ["list"] = (game => new ActionCommand(_ => ListCommand.Exec(game, UserInput ?? "")), ReadFile("list"))
         };
+        static CommandDictionary()
+        {
+            UserInput = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) ?? "WHAT THE FUCK?!";
+            InputHistory = [];
+        }
 
         private static void ErrorPrint(string command)
-        {
-            TextOut.WriteLine($"Missing or invalid parameters for '{command}'", ConsoleColor.Red);
-        }
+            => CommandHandlerMethods.ErrorPrint(command);
+        private static string ReadFile(string fileName)
+            => CommandHandlerMethods.ReadFile(fileName);
         private static void Help(string userInput)
             => HelpCommand.Exec(commands, userInput);
-
-        private static string ReadFile(string fileName)
-        {
-            string resourceName = $"GameOfLife.Exec.CommandHelp.{fileName}.txt";
-            var assembly = Assembly.GetExecutingAssembly();
-            using Stream? stream = assembly.GetManifestResourceStream(resourceName);
-            if (stream == null)
-            {
-                TextOut.Write($"Command description for [", ConsoleColor.Red);
-                TextOut.Write(fileName, ConsoleColor.Yellow);
-                TextOut.WriteLine($"] not implemented. Consider doing so, dumbass!", ConsoleColor.Red);
-                return "";
-            }
-            using StreamReader reader = new StreamReader(stream);
-            return reader.ReadToEnd();
-        }
+        private static void HelpFor(string userInput)
+            => HelpForCommand.Exec(commands, userInput);
     }
 }

@@ -5,22 +5,16 @@
         public abstract object? Invoke(params object?[] args);
     }
 
-    internal class ActionCommand : CommandBase
+    internal class ActionCommand(Action<object?[]> action) : CommandBase
     {
-        private readonly Action<object?[]> action;
-        public ActionCommand(Action<object?[]> action)
-            => this.action = action;
         public override object? Invoke(params object?[] args)
         {
             action(args);
             return null;
         }
     }
-    internal class FuncCommand<T> : CommandBase
+    internal class FuncCommand<T>(Func<object?[], T> func) : CommandBase
     {
-        private readonly Func<object?[], T> func;
-        public FuncCommand(Func<object?[], T> func)
-            => this.func = func;
         public override object? Invoke(params object?[] args)
             => func(args);
     }
