@@ -1,6 +1,7 @@
 ﻿using GameOfLife.Exec.Structs;
 using GameOfLife.Exec.Utilities;
 using GameOfLife.Exec.Utilities.GameManagement;
+using GameOfLife.Exec.Utilities.IO;
 
 namespace GameOfLife.Exec
 {
@@ -22,5 +23,8 @@ namespace GameOfLife.Exec
 
         public bool PrintFrame(ImageManager imageManager, uint index)
             => PrintImage.FromFrame(imageManager, index);
+
+        public void ReadCommand()
+            => UserInput.ReadCommand(this);
     }
 }

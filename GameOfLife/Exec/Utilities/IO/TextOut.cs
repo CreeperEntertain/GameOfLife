@@ -15,7 +15,12 @@
             Console.ForegroundColor = originalForeground;
             Console.BackgroundColor = originalBackground;
         }
+        public static void Write()
+            => Console.Write("");
+
         public static void WriteLine(object input, ConsoleColor textColor = ConsoleColor.White, ConsoleColor backgroundColor = ConsoleColor.Black)
             => Write($"{input}\n", textColor, backgroundColor);
+        public static void WriteLine()
+            => Console.WriteLine();
     }
 }

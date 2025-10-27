@@ -16,6 +16,9 @@ namespace GameOfLife.Exec
         {
             TextOut.WriteLine("Greetings, user!\n", ConsoleColor.Green);
             game.CreateFromUserInput(false);
+            game.ReadCommand();
+
+            /*
             game.ListImageManagers();
 
             Image? image = GameImages.ImageAdding(imageManagers[0]);
@@ -25,6 +28,7 @@ namespace GameOfLife.Exec
             TextOut.Write("Press any key to render frame 16", ConsoleColor.Blue);
             Console.ReadKey();
             PrintImage.FromFrame(imageManagers[0], 16);
+            */
         }
     }
 }

@@ -24,6 +24,9 @@ namespace GameOfLife.Exec.Utilities.IO
             return found;
         }
 
+        public static void ReadCommand(RunGame game)
+            => CommandInput.ReadCommand(game);
+
         public static int[] ProvideScales()
         {
             TextOut.WriteLine("Type 'cancel' to cancel.", ConsoleColor.Blue);
