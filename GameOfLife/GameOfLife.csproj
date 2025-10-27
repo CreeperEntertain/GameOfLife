@@ -8,12 +8,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
-    <PackageReference Include="System.Drawing.Common" Version="9.0.10" />
+    <None Remove="Exec\CommandHelp\help.txt" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Exec\CommandHelp\" />
+    <EmbeddedResource Include="Exec\CommandHelp\help.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.11" />
+    <PackageReference Include="System.Drawing.Common" Version="9.0.10" />
   </ItemGroup>
 
 </Project>
