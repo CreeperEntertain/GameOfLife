@@ -26,6 +26,11 @@ namespace GameOfLife.Exec.Utilities.IO.Commands
                 case "images":
                     ListImages(game);
                     break;
+                default:
+                    TextOut.Write("Parameter [", ConsoleColor.Red);
+                    TextOut.Write(keyword, ConsoleColor.Yellow);
+                    TextOut.WriteLine("] not recognized.", ConsoleColor.Red);
+                    break;
             }
         }
 

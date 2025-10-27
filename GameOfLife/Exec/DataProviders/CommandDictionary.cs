@@ -16,7 +16,8 @@ namespace GameOfLife.Exec.DataProviders
             ["clear"] = (game => new ActionCommand(_ => ClearCommand.Exec()), ReadFile("clear")),
             ["history"] = (game => new ActionCommand(_ => HistoryCommand.Exec()), ReadFile("history")),
             ["clearhistory"] = (game => new ActionCommand(_ => ClearHistoryCommand.Exec()), ReadFile("clearhistory")),
-            ["list"] = (game => new ActionCommand(_ => ListCommand.Exec(game)), ReadFile("list"))
+            ["list"] = (game => new ActionCommand(_ => ListCommand.Exec(game)), ReadFile("list")),
+            ["rename"] = (game => new ActionCommand(_ => RenameCommand.Exec(game)), ReadFile("rename"))
         };
         static CommandDictionary()
         {
