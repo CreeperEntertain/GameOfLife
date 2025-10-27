@@ -8,7 +8,11 @@ namespace GameOfLife.Exec.Utilities.IO.Commands
 
         public static void Exec()
         {
-            PrintHistory(CommandDictionary.InputHistory);
+            string[] input = CommandDictionary.UserInput.Split(' ');
+            if (input.Length > 1)
+                TextOut.WriteLine("More than 1 word provided.", ConsoleColor.Red);
+            else
+                PrintHistory(CommandDictionary.InputHistory);
         }
 
         private static void PrintHistory(List<string> inputHistory)

@@ -1,12 +1,10 @@
-﻿using GameOfLife.Exec.Utilities.IO;
+﻿using GameOfLife.Exec.DataProviders;
+using GameOfLife.Exec.Utilities.IO;
 
 namespace GameOfLife.Exec.Utilities.GameManagement
 {
     internal static class ImageManagerHandling
     {
-        private readonly static int listPadding = 6;
-        private readonly static int maxNameLength = 127;
-
         public static bool CreateFromUserInput(List<ImageManager> imageManagers, bool cancellable = true)
         {
             string providedName = "";
@@ -26,7 +24,7 @@ namespace GameOfLife.Exec.Utilities.GameManagement
                     TextOut.WriteLine("Image manager creation cancelled.", ConsoleColor.Yellow);
                     return false;
                 }
-                if (providedName.Length > maxNameLength)
+                if (providedName.Length > DefaultValues.MaxStringLength)
                 {
                     TextOut.WriteLine("Provided name is too long.", ConsoleColor.Red);
                     continue;
@@ -66,7 +64,7 @@ namespace GameOfLife.Exec.Utilities.GameManagement
         public static bool RenameImageManagerFromUserInput(List<ImageManager> imageManagers, uint index, bool printResult = false)
         {
             string name = Console.ReadLine() ?? "";
-            if (name.Length > maxNameLength)
+            if (name.Length > DefaultValues.MaxStringLength)
             {
                 if (printResult)
                     TextOut.WriteLine("Provided name is too long.", ConsoleColor.Red);
@@ -81,7 +79,7 @@ namespace GameOfLife.Exec.Utilities.GameManagement
             TextOut.WriteLine("Here's the list of image managers:", ConsoleColor.Blue);
             foreach (ImageManager manager in imageManagers)
             {
-                TextOut.Write($"{$"{ID}.".PadRight(listPadding)}", ConsoleColor.Blue);
+                TextOut.Write($"{$"{ID}.".PadRight(DefaultValues.ListIndexPadding)}", ConsoleColor.Blue);
                 TextOut.WriteLine(manager.name, ConsoleColor.Yellow);
                 ID++;
             }

@@ -6,10 +6,17 @@ namespace GameOfLife.Exec.Utilities.IO.Commands
     {
         public static void Exec()
         {
-            ClearHistory();
+            string[] input = CommandDictionary.UserInput.Split(' ');
+            if (input.Length > 1)
+                TextOut.WriteLine("More than 1 word provided.", ConsoleColor.Red);
+            else
+                ClearHistory();
         }
 
         private static void ClearHistory()
-            => CommandDictionary.InputHistory = [];
+        {
+            CommandDictionary.InputHistory = [];
+            TextOut.Write("Input history cleared.", ConsoleColor.Blue);
+        }
     }
 }

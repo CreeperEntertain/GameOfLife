@@ -26,7 +26,12 @@ namespace GameOfLife.Exec.Utilities.IO.CommandHandling
             if (commands.TryGetValue(firstWord, out var command))
                 command.Item1(game).Invoke();
             else
+            {
                 TextOut.WriteLine("Invalid command.", ConsoleColor.Red);
+                TextOut.Write("Type '", ConsoleColor.Red);
+                TextOut.Write("help", ConsoleColor.Yellow);
+                TextOut.WriteLine("' for a list of commands.", ConsoleColor.Red);
+            }
             return true;
         }
     }

@@ -1,4 +1,5 @@
-﻿using GameOfLife.Exec.Utilities.IO;
+﻿using GameOfLife.Exec.DataProviders;
+using GameOfLife.Exec.Utilities.IO;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.PixelFormats;
 
@@ -8,9 +9,8 @@ namespace GameOfLife.Exec.Utilities.ImageRelated
     {
         public static bool CheckDimensions(int[] providedScales)
         {
-            int upperLimit = 127;
             foreach (int index in providedScales)
-                if (index < 1 || index > upperLimit)
+                if (index < 1 || index > DefaultValues.MaxImageDimensions)
                 {
                     TextOut.WriteLine("Image too large, too small, or no dimensions provided.", ConsoleColor.Red);
                     return false;
